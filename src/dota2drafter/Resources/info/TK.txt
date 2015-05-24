@@ -1,0 +1,9 @@
+CommonName: Tinker
+Name: Boush
+Title: Tinker
+Abbrv: TK
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,2,10

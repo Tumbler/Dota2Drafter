@@ -1,0 +1,9 @@
+CommonName: Faceless Void
+Name: Darkterror
+Title: Faceless Void
+Abbrv: FV
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 3,5,10,11

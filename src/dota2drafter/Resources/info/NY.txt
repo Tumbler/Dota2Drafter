@@ -1,0 +1,9 @@
+CommonName: Nyx
+Name: Anub'arak
+Title: Nyx Assassin
+Abbrv: NY
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 2,4,5,6,10

@@ -1,0 +1,9 @@
+CommonName: Tusk
+Name: Ymir
+Title: Tusk
+Abbrv: TU
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 2,3,5,10

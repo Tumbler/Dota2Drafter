@@ -1,0 +1,9 @@
+CommonName: Luna
+Name: Luna
+Title: Moon Rider
+Abbrv: LU
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 1,2,4,5,11,13

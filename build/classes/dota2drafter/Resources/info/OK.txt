@@ -1,0 +1,9 @@
+CommonName: Omniknight
+Name: Purist Thunderwrath
+Title: Omniknight
+Abbrv: OK
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 1,2,5,8

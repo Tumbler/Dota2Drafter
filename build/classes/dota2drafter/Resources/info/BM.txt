@@ -1,0 +1,9 @@
+CommonName: Beastmaster
+Name: Karroch
+Title: Beastmaster
+Abbrv: BM
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 2,4,5,14

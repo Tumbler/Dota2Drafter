@@ -1,0 +1,9 @@
+CommonName: Slardar
+Name: Slardar
+Title: Slithereen Guard
+Abbrv: SR
+Side: Dire
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 2,4,5,7,9,10,11,15

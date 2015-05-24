@@ -1,0 +1,9 @@
+CommonName: Riki
+Name: Rikimaru
+Title: Stealth Assassin
+Abbrv: RK
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 5,6,10,11,12,13

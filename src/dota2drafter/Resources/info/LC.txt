@@ -1,0 +1,9 @@
+CommonName: Legion Commander
+Name: Tresdin
+Title: Legion Commander
+Abbrv: LC
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 4,7,8,11

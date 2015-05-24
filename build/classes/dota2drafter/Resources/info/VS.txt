@@ -1,0 +1,9 @@
+CommonName: Vengeful Spirit
+Name: Shendelzare
+Title: Vengeful Spirit
+Abbrv: VS
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 2,4,5,13

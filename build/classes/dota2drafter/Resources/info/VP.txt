@@ -1,0 +1,9 @@
+CommonName: Viper
+Name: Viper
+Title: Netherdrake
+Abbrv: VP
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 5,7,11

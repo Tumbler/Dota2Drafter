@@ -1,0 +1,9 @@
+CommonName: Invoker
+Name: Carl
+Title: Invoker
+Abbrv: IN
+Side: Dire
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,4,5,6,9,10,11

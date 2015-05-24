@@ -1,0 +1,9 @@
+CommonName: Storm Spirit
+Name: Raijin Thunderkeg
+Title: Storm Spirit
+Abbrv: SS
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,4,5,10,13

@@ -1,0 +1,9 @@
+CommonName: Medusa
+Name: Medusa
+Title: Gorgon
+Abbrv: MD
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 3,5,11

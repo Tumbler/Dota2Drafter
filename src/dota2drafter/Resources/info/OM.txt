@@ -1,0 +1,9 @@
+CommonName: Ogre Magi
+Name: Aggron Stonebreak
+Title: Ogre Magi
+Abbrv: OM
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,4,5,7

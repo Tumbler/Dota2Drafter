@@ -1,0 +1,9 @@
+CommonName: Tidehunter
+Name: Leviathan
+Title: Tidehunter
+Abbrv: TH
+Side: Dire
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 4,5,7

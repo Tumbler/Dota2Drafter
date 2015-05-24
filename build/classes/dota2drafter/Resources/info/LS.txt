@@ -1,0 +1,9 @@
+CommonName: Lifestealer
+Name: N'aix
+Title: Lifestealer
+Abbrv: LS
+Side: Dire
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 7,11

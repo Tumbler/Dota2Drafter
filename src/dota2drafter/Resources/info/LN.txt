@@ -1,0 +1,9 @@
+CommonName: Lion
+Name: Lion
+Title: Demon Witch
+Abbrv: LN
+Side: Dire
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,4,13

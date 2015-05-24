@@ -1,0 +1,9 @@
+CommonName: Huskar
+Name: Huskar
+Title: Sacred Warrior
+Abbrv: HK
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 7,8,11

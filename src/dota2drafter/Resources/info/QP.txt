@@ -1,0 +1,9 @@
+CommonName: Queen of Pain
+Name: Akasha
+Title: Queen of Pain
+Abbrv: QP
+Side: Dire
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,5,10,14

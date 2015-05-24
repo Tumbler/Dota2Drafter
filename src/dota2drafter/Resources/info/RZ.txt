@@ -1,0 +1,9 @@
+CommonName: Razor
+Name: Razor
+Title: Lightning Revenant
+Abbrv: RZ
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 1,2,5,7,9,10,11

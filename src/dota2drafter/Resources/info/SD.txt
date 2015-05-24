@@ -1,0 +1,9 @@
+CommonName: Shadow Demon
+Name: Eredar
+Title: Shadow Demon
+Abbrv: SD
+Side: Dire
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,5,13

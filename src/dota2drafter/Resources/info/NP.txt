@@ -1,0 +1,9 @@
+CommonName: Nature's Prophet
+Name: Furion
+Title: Nature's Prophet
+Abbrv: NP
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,5,10,11

@@ -1,0 +1,9 @@
+CommonName: Terrorblade
+Name: Terrorblade
+Title: Soul Keeper
+Abbrv: TB
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 1,5,11,14

@@ -1,0 +1,9 @@
+CommonName: Lina
+Name: Lina
+Title: Slayer
+Abbrv: LA
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,2,3,14

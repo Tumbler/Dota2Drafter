@@ -1,0 +1,9 @@
+CommonName: Zeus
+Name: Zeus
+Title: Lord of Heaven
+Abbrv: ZZ
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,2,5

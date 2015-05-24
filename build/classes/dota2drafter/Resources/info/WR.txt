@@ -1,0 +1,9 @@
+CommonName: Windranger
+Name: Lyralei
+Title: Windranger
+Abbrv: WR
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,2,4,10,11

@@ -1,0 +1,9 @@
+CommonName: Venomancer
+Name: Lesale Deathbringer
+Title: Venomancer
+Abbrv: VM
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 1,5

@@ -1,0 +1,9 @@
+CommonName: Skywrath Mage
+Name: Dragonus
+Title: Skywrath Mage
+Abbrv: SM
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,12,13

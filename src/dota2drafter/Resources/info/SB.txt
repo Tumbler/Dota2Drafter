@@ -1,0 +1,9 @@
+CommonName: Spirit Breaker
+Name: Barathrum
+Title: Spirit Breaker
+Abbrv: SB
+Side: Dire
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 3,5,7,10,14

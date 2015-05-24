@@ -1,0 +1,9 @@
+CommonName: Kunkka
+Name: Kunkka
+Title: Admiral
+Abbrv: KK
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 1,2,3,5,11

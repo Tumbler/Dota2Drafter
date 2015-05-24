@@ -1,0 +1,9 @@
+CommonName: Undying
+Name: Dirge
+Title: Undying
+Abbrv: UD
+Side: Dire
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 1,2,5,7,8

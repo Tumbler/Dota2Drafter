@@ -1,0 +1,9 @@
+CommonName: Meepo
+Name: Meepo
+Title: Geomancer
+Abbrv: MO
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 1,2,3,5,10,11,13,15

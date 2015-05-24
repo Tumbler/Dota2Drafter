@@ -1,0 +1,9 @@
+CommonName: Templar Assassin
+Name: Lanaya
+Title: Teplar Assassin
+Abbrv: TA
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 6,11

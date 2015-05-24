@@ -1,0 +1,9 @@
+CommonName: Phantom Lancer
+Name: Azwraith
+Title: Phantom Lancer
+Abbrv: PL
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 2,5,10,11

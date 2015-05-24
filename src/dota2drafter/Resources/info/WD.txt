@@ -1,0 +1,9 @@
+CommonName: Witch Doctor
+Name: Zharvakko
+Title: Witch Doctor
+Abbrv: WD
+Side: Dire
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,4,5,8,14

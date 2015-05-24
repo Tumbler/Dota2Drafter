@@ -1,0 +1,9 @@
+CommonName: Puck
+Name: Puck
+Title: Faerie Dragon
+Abbrv: PK
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,2,4,5,10,12

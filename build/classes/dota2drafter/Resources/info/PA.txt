@@ -1,0 +1,9 @@
+CommonName: Phantom Assassin
+Name: Mortred
+Title: Phantom Assassin
+Abbrv: PA
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 10,11,13

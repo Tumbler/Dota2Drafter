@@ -1,0 +1,9 @@
+CommonName: Bounty Hunter
+Name: Gondar
+Title: Bounty Hunter
+Abbrv: BH
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 2,3,6

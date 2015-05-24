@@ -1,0 +1,9 @@
+CommonName: Chen
+Name: Chen
+Title: Holy Knight
+Abbrv: CH
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,3,8

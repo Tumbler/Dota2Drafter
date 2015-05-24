@@ -1,0 +1,9 @@
+CommonName: Drow Ranger
+Name: Traxex
+Title: Drow Ranger
+Abbrv: DW
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 11,12,13

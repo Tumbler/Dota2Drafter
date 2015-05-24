@@ -1,0 +1,9 @@
+CommonName: Morphling
+Name: Morphling
+Title: Morphling???
+Abbrv: MP
+Side: Radiant
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 2,4,5,7,10,11,13

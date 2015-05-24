@@ -1,0 +1,9 @@
+CommonName: Elder Titan
+Name: Cairne Bloodhoof
+Title: Elder Titan
+Abbrv: ET
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 2,3,5,9

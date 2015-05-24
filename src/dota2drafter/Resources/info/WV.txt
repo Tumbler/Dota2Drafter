@@ -1,0 +1,9 @@
+CommonName: Weaver
+Name: Skitskurr
+Title: Weaver
+Abbrv: WV
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 6,10,11,13

@@ -1,0 +1,9 @@
+CommonName: Centaur Warrunner
+Name: Bradwarden
+Title: Centaur Warrunner
+Abbrv: CR
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 2,4,5,7,10

@@ -1,0 +1,9 @@
+CommonName: Sven
+Name: Sven
+Title: Rogue Knight
+Abbrv: SV
+Side: Radiant
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 1,2,4,5,7,11

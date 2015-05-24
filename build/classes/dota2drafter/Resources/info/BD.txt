@@ -1,0 +1,9 @@
+CommonName: Broodmother
+Name: Black Arachnia
+Title: Broodmother
+Abbrv: BD
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 1,2,6,10

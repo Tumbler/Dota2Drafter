@@ -1,0 +1,9 @@
+CommonName: Abaddon
+Name: Abaddon
+Title: Lord of Avernus
+Abbrv: AB
+Side: Dire
+Attr: Strength
+Combos: 
+Counters: AX
+Characteristics: 2,7,8

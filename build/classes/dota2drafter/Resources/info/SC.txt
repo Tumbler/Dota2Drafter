@@ -1,0 +1,9 @@
+CommonName: Silencer
+Name: Nortrom
+Title: Silencer
+Abbrv: SC
+Side: Radiant
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 2,5,11,12

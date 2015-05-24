@@ -1,0 +1,9 @@
+CommonName: Visage
+Name: Visage
+Title: bound form of Mecro'lic
+Abbrv: VG
+Side: Dire
+Attr: Intelligence
+Combos: 
+Counters: 
+Characteristics: 1,2,3,5,10,13

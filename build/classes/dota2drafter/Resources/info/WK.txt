@@ -1,0 +1,9 @@
+CommonName: Wraith King
+Name: Ostarion
+Title: Wraith King
+Abbrv: WK
+Side: Dire
+Attr: Strength
+Combos: 
+Counters: 
+Characteristics: 2,4,5,7,8,11,15
