@@ -9,7 +9,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class Player {
     String name;
-    private Hero[] playList = new Hero[Global.NUMBER_OF_HEROES];
+    private Hero[] playList = new Hero[Global.NUMBER_OF_HEROES + 1];
     // Number of heros they can play
     private int playNumber;
     // Tracks which teams this player is a part of. (Mostsly for deleting puroses)
@@ -38,13 +38,26 @@ public class Player {
         playNumber++;
     }    
     
+    void RemoveHero(Hero hero) {
+        boolean found = false;
+        for (int i=0; i < playNumber; i++) {
+            if (hero.abbrv.matches(playList[i].abbrv)) {
+                found = true;
+                playNumber--;
+            }
+            if (found) {
+                playList[i] = playList[i+1];
+            }
+        }
+    }
+    
     void savePlayer() {
         uniqueID = Global.Players.size();
         Global.Players.add(this);
     }
     
     void Delete() {
-        Global.Players.remove(this);
+        Global.Players.remove(this);        
         for(int i=uniqueID; i < Global.Players.size(); i++) {
             Global.Players.get(i).uniqueID--;
         }
@@ -55,7 +68,7 @@ public class Player {
     
     JPanel PlayerPreview() {
         JPanel panel = new JPanel(new MigLayout("", "grow, fill"));
-        JPanel S = new JPanel(new WrapLayout(FlowLayout.LEADING));
+        JPanel S = new JPanel(new MigLayout("wrap 8"));
         for(int i=0; i < this.playNumber; i++) {
             S.add(new JLabel(playList[i].portraitTiny));
         }

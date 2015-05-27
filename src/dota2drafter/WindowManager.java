@@ -363,7 +363,7 @@ public class WindowManager {
                     } else {
                         for (Team team: Global.Teams) {
                             JPanel thisTeam = team.TeamPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("Edit.png", 16, 16));
+                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 called = new ModifyTeamScreen(team, this);
@@ -728,7 +728,7 @@ public class WindowManager {
                 team = teamPassed;
                 for (Player player: team.GetPlayers()) {                          
                             JPanel thisPlayer = player.PlayerPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("Edit.png", 16, 16));
+                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 new ModifyPlayerPopup(player, this, null);

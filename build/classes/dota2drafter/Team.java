@@ -19,10 +19,10 @@ public class Team {
         uniqueID = -1;
     }
     
-    String[] GetHeroPool() {
-        String[] returnList = new String[numOfPlayers];
+    Hero[] GetHeroPool() {
+        Hero[] returnList = new Hero[numOfPlayers];
         for (int i=0; i < poolNumber; i++) {
-            returnList[i] = heroPool[i];
+            returnList[i] = Global.AllHeroes.get(heroPool[i]);
         }
         return returnList;
     }
@@ -68,7 +68,7 @@ public class Team {
     // Desn't actually delete, just adjusts for the deletion.
     void DeletePlayer(Player player) {
         boolean found = false;
-        for (int i =0; i < numOfPlayers; i++) {
+        for (int i=0; i < numOfPlayers; i++) {
             if (player.uniqueID == players[i]) {
                 found = true;
                 numOfPlayers--;
@@ -82,22 +82,22 @@ public class Team {
         }
     }
     
-    void AddToPool(String hero) {
+    void AddToPool(Hero hero) {
         // Don't want duplicates
-        if (!FindInPool(hero) && poolNumber < Global.NUMBER_OF_HEROES) {
+        if (!Global.ExsistsInPool(hero.abbrv, GetHeroPool()) && poolNumber < Global.NUMBER_OF_HEROES) {
            AddHero(hero); 
         }
     }
     
-    void AddHero(String hero) {
+    void AddHero(Hero hero) {
         // Inserstion sort
         // MIGHT BE WRONG!!! PLEASE CHECK THIS!!
         int i = poolNumber;
-        while(hero.compareTo(heroPool[i]) < 0 && i > 0) {
+        while(hero.abbrv.compareTo(heroPool[i]) < 0 && i > 0) {
             heroPool[i-1] = heroPool[i];
             i--;
         }
-        heroPool[i] = hero;
+        heroPool[i] = hero.abbrv;
     }
     
     void saveTeam() {
@@ -117,21 +117,6 @@ public class Team {
         panel.add(S, "south, growx");
         panel.add(new JLabel(" " + this.name), "west");
         return panel;
-    }
-    
-    boolean FindInPool(String hero){
-        int i = 0;
-        int compare;
-        // Search through the heroPool but stop if we found one that comes
-        //   after our search alphabetically. (because they're sorted)
-        do {
-            compare = hero.compareTo(heroPool[i]);
-            if (compare == 0) {
-                return true;
-            }
-            i++;
-        } while (compare < 0);
-        return false;
     }
     
     void Delete(){

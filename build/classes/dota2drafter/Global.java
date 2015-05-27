@@ -42,11 +42,8 @@ public class Global {
     public static boolean ExsistsInPool(String find, Hero[] heroes) {
         // Null check everything before moving on
         if (heroes == null) {
-            System.out.println("found null:" + i++);
             return false;
         }
-        
-        System.out.println("moving on!" + j++);
         for(Hero hero: heroes) {
             if (hero == null){
                 return false;

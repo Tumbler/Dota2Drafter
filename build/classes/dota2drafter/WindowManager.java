@@ -23,6 +23,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
+import static javax.swing.ScrollPaneConstants.*;
 import net.miginfocom.swing.MigLayout;
 
 public class WindowManager {
@@ -50,6 +51,11 @@ public class WindowManager {
         JButton manageTeams = new JButton("Manage Teams");
         JLabel myPlayers = new JLabel("Players");
         JButton managePlayers = new JButton("Manage Players");
+        JPanel teamsInner = new JPanel(new MigLayout("flowy", "grow, fill"));
+        JPanel playersInner = new JPanel(new MigLayout("flowy", "grow, fill"));
+        JScrollPane teamScroll = new JScrollPane(teamsInner);        
+        JScrollPane playerScroll = new JScrollPane(playersInner);
+        Dimension windowSize = new Dimension(500, 500);
         Screen called;
         
         public MainScreen() {
@@ -79,9 +85,16 @@ public class WindowManager {
             teams.setBorder(BorderFactory.createLineBorder(Color.black));
             players.setBorder(BorderFactory.createLineBorder(Color.black));
             
+            teamScroll.setBorder(BorderFactory.createEmptyBorder());
+            teamScroll.getVerticalScrollBar().setUnitIncrement(16);
+            teamScroll.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+            playerScroll.setBorder(BorderFactory.createEmptyBorder());
+            playerScroll.getVerticalScrollBar().setUnitIncrement(16);
+            playerScroll.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+            
             this.DrawScreen();          
             
-            Adam.setMinimumSize(new Dimension(500, 500));
+            Adam.setMinimumSize(windowSize);
             Adam.setLocationRelativeTo(null);
             Adam.setVisible(true);
         }
@@ -101,8 +114,9 @@ public class WindowManager {
                 });
                 thisTeam.add(startTeam, "east");
                 thisTeam.setBorder(BorderFactory.createLineBorder(Color.black));
-                teams.add(thisTeam, "growx");
+                teamsInner.add(thisTeam, "growx");
             }
+            teams.add(teamScroll);
             
             players.add(myPlayers);
             players.add(managePlayers, "growx");
@@ -117,8 +131,9 @@ public class WindowManager {
                 });
                 thisPlayer.add(modify, "east");
                 thisPlayer.setBorder(BorderFactory.createLineBorder(Color.black));
-                players.add(thisPlayer, "growx");
+                playersInner.add(thisPlayer, "growx");
             }
+            players.add(playerScroll);
             
             teamDraft.add(teamDraftL, "span, center");
             teamDraft.add(teams, "grow");
@@ -129,6 +144,7 @@ public class WindowManager {
             Eve.add(teamDraft, "span");
             
             Adam.add(Eve);
+            Adam.setSize(windowSize);
         }
         
         @Override
@@ -141,7 +157,8 @@ public class WindowManager {
             Adam.remove(called.Eve);
             Adam.add(Eve);            
             Adam.revalidate();
-            Adam.setMinimumSize(new Dimension(500,500));
+            Adam.setMinimumSize(windowSize);
+            Adam.setSize(windowSize);
             Adam.repaint();
         }
 
@@ -150,6 +167,8 @@ public class WindowManager {
             teamDraft.removeAll();
             teams.removeAll();
             players.removeAll();
+            teamsInner.removeAll();;
+            playersInner.removeAll();
             Eve.removeAll();
             this.DrawScreen();
             Eve.revalidate();
@@ -196,6 +215,7 @@ public class WindowManager {
         JLabel player3 = new JLabel("Player #3");
         JLabel player4 = new JLabel("Player #4");
         JLabel player5 = new JLabel("Player #5");
+        Dimension windowSize = new Dimension(700, 1000);
         Team team;
         Screen caller;
         
@@ -265,6 +285,8 @@ public class WindowManager {
             Eve.add(theirBans, "c");
             Eve.add(players);
             Eve.add(theirPool);
+            
+            Adam.setSize(windowSize);
         }
         
         @Override
@@ -276,7 +298,7 @@ public class WindowManager {
             Adam.remove(caller.Eve);
             Adam.add(Eve);            
             Adam.revalidate();
-            Adam.setMinimumSize(new Dimension(700,1000));
+            Adam.setMinimumSize(windowSize);
             Adam.repaint();
         }
 
@@ -287,11 +309,13 @@ public class WindowManager {
     
     class ManageScreen extends Screen {
         JPanel info = new JPanel(new MigLayout());
-        JPanel view = new JPanel(new MigLayout("flowy"));
+        JPanel view = new JPanel(new MigLayout("flowy", "grow, fill"));
+        JScrollPane viewScroll = new JScrollPane(view);
         JButton back = new JButton("Back");
         JButton addB = new JButton(ResourceRetriever.GetImage("plus.png", 16, 16));
         JLabel label = new JLabel();
         String type;
+        Dimension windowSize = new Dimension(400, 400);
         Screen caller;
         Screen called;
         
@@ -317,6 +341,8 @@ public class WindowManager {
             
             view.setBorder(BorderFactory.createLineBorder(Color.black));
             
+            viewScroll.getVerticalScrollBar().setUnitIncrement(16);
+            
             this.DrawScreen();
         }
         
@@ -327,7 +353,7 @@ public class WindowManager {
             Eve.add(info, "spany 2, grow");
             Eve.add(addB);
             Eve.add(label);
-            Eve.add(view, "span, grow");
+            Eve.add(viewScroll, "span, grow");
             
             switch(type) {
                 case "team":
@@ -337,7 +363,7 @@ public class WindowManager {
                     } else {
                         for (Team team: Global.Teams) {
                             JPanel thisTeam = team.TeamPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("Edit.png", 16, 16));
+                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 called = new ModifyTeamScreen(team, this);
@@ -405,7 +431,7 @@ public class WindowManager {
                         }
                     }
                     break;
-            }  
+            }
         }
         
         @Override
@@ -423,7 +449,7 @@ public class WindowManager {
             Adam.remove(caller.Eve);
             Adam.add(Eve);            
             Adam.revalidate();
-            Adam.setMinimumSize(new Dimension(500,700));
+            Adam.setMinimumSize(windowSize);
             Adam.repaint();
         }
 
@@ -432,7 +458,7 @@ public class WindowManager {
             Adam.remove(called.Eve);
             Adam.add(Eve);            
             Adam.revalidate();
-            Adam.setMinimumSize(new Dimension(500,700));
+            Adam.setMinimumSize(windowSize);
             Adam.repaint();
         }
     }
@@ -440,7 +466,9 @@ public class WindowManager {
     class BrowseScreen extends Screen {        
         PoolBuilder pool = new PoolBuilder(true, "small", null, null);
         JButton back = new JButton("Back");
+        Dimension windowSize = new Dimension(650, 700);
         Screen caller;
+        
         public BrowseScreen(Screen caller) {      
             Eve.setLayout(new MigLayout("flowy", "grow, fill", "[][grow, fill]"));
             this.caller = caller;
@@ -456,7 +484,7 @@ public class WindowManager {
             Adam.remove(caller.Eve);
             Adam.add(Eve);            
             Adam.revalidate();
-            Adam.setMinimumSize(new Dimension(650,700));
+            Adam.setMinimumSize(windowSize);
             Adam.repaint();
         }
 
@@ -481,6 +509,7 @@ public class WindowManager {
         Player player;
         JWindow popup = new JWindow();
         JPanel inner = new JPanel(new MigLayout("", "[grow, fill]", "[grow, fill]"));
+        JButton back;
         
         public ModifyPlayerPopup(Player playerPassed, Screen callerScreen, Team team) {
            
@@ -508,7 +537,15 @@ public class WindowManager {
                 // We're edditing a current player
                 player = playerPassed;
                 for(Hero hero: player.GetPlayList()) {
-                    heroes.add(new JLabel(hero.portraitSmall));
+                    JLabel heroLabel = new JLabel(hero.portraitSmall);
+                    heroLabel.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                            player.RemoveHero(hero);
+                            Refresh();
+                        }
+                    });
+                    heroes.add(heroLabel);
                 }
                 name.setText(player.name);
             } else {
@@ -519,12 +556,14 @@ public class WindowManager {
             addHeroes.setMargin(new Insets(0,0,0,0));
             addHeroes.addActionListener((ActionEvent e) -> {
                 PoolBuilder pool = new PoolBuilder(false, "small", new returner(), player.GetPlayList());
-                JButton back = new JButton("Cancel");
+                back = new JButton("Cancel");
                 back.addActionListener((ActionEvent p) -> {
                     inner.removeAll();
                     popup.dispose();
                 });
+                JLabel note = new JLabel("Right click to add multiple heroes.");
                 inner.add(back, "wrap");
+                inner.add(note, "wrap");
                 inner.add(pool.pool, "growx");
                 popup.add(inner);
                 popup.setSize(700, 500); 
@@ -554,26 +593,59 @@ public class WindowManager {
             @Override
             public Void call() throws Exception {
                 player.AddHero(this.hero);
-                heroes.add(new JLabel(this.hero.portraitSmall));
+                JLabel heroLabel = new JLabel(this.hero.portraitSmall);
+                heroLabel.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(java.awt.event.MouseEvent e) {
+                            player.RemoveHero(hero);
+                            Refresh();
+                        }
+                    });
+                
+                heroes.add(heroLabel);
                 heroes.revalidate();
                 heroes.repaint();
-                inner.removeAll();
-                popup.dispose();
+                if (e.getButton() == 3) {
+                    back.setText("Done");
+                } else {
+                    // Button 1 (Or three I suppose??)
+                    inner.removeAll();
+                    popup.dispose();
+                }
                 return null;
             }
+        }
+        
+        void Refresh(){
+            heroes.removeAll();
+            for(Hero hero: player.GetPlayList()) {
+                JLabel heroLabel = new JLabel(hero.portraitSmall);
+                heroLabel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(java.awt.event.MouseEvent evt) {
+                        player.RemoveHero(hero);
+                        Refresh();
+                    }
+                });
+                heroes.add(heroLabel);
+            }
+            heroes.revalidate();
+            heroes.repaint();
         }
     }
     
     class ModifyTeamScreen extends Screen{
         JPanel south = new JPanel(new MigLayout("wrap 2", "[][grow]", "[][grow][]"));
-        JPanel players = new JPanel(new MigLayout("flowy"));
+        JPanel players = new JPanel(new MigLayout("flowy", "grow, fill"));
         JTextField name = new JTextField("Team Name");
         JButton addPlayers = new JButton(ResourceRetriever.GetImage("plus.png", 16, 16));
         JButton cancel = new JButton("Cancel");
         JButton save = new JButton("Save");       
         Team team;
         JWindow popup = new JWindow();
-        JPanel inner = new JPanel(new MigLayout("flowy", "[grow, fill]", "[grow, fill]"));
+        JPanel inner = new JPanel(new MigLayout("flowy", "[grow, fill]", ""));
+        JScrollPane innerScroll = new JScrollPane(inner);
+        Dimension windowSize = new Dimension(400, 400);
         Screen caller;
         
         public ModifyTeamScreen(Team teamPassed, Screen callerScreen) {
@@ -584,7 +656,7 @@ public class WindowManager {
                 caller.Return();
             });
             
-            save.addActionListener((ActionEvent e) -> {                
+            save.addActionListener((ActionEvent e) -> {
                 team.name = name.getText();
                 if (team.uniqueID == -1) {
                     team.saveTeam();
@@ -595,34 +667,53 @@ public class WindowManager {
                 caller.Return();
             });
             addPlayers.setMargin(new Insets(0,0,0,0));
-            addPlayers.addActionListener((ActionEvent e) -> {
-                JButton cancelALLTHETHINGS = new JButton("Cancel");
-                cancelALLTHETHINGS.addActionListener((ActionEvent f) -> {
-                    inner.removeAll();
-                    popup.dispose();
-                });
-                inner.add(cancelALLTHETHINGS);
-                JButton newPlayer = new JButton("New Player");
-                newPlayer.addActionListener((ActionEvent f) -> {
-                    inner.removeAll();
-                    popup.dispose();
-                    ModifyPlayerPopup addNewPlayer = new ModifyPlayerPopup(null, this, team);
-                });
-                inner.add(newPlayer);
-                for (Player player: Global.Players) {
-                    JButton oldPlayer = new JButton(player.name);
-                    oldPlayer.addActionListener((ActionEvent f) -> {
-                        team.AddPlayer(player);
+            addPlayers.addActionListener((ActionEvent e) -> {                
+                if (team.GetPlayers().length < 5) {
+                    JButton cancelB = new JButton("Cancel");
+                    cancelB.addActionListener((ActionEvent f) -> {
                         inner.removeAll();
                         popup.dispose();
-                        Refresh();
                     });
-                    inner.add(oldPlayer);
+                    inner.add(cancelB);
+                    JButton newPlayer = new JButton("New Player");
+                    newPlayer.addActionListener((ActionEvent f) -> {
+                        inner.removeAll();
+                        popup.dispose();
+                        ModifyPlayerPopup addNewPlayer = new ModifyPlayerPopup(null, this, team);
+                    });
+                    inner.add(newPlayer);                
+                    inner.add(new JSeparator(), "growx");
+                    for (Player player: Global.Players) {
+                        boolean playerInCurrentTeam = false;
+                        for (Player teamPlayer: team.GetPlayers()) {
+                            if (teamPlayer.uniqueID == player.uniqueID) {
+                                playerInCurrentTeam = true;
+                                break;
+                            }
+                        }
+                        if (!playerInCurrentTeam) {                        
+                            JPanel oldPlayer = player.PlayerPreview();
+                            JButton choose = new JButton("Add!");
+                            choose.addActionListener((ActionEvent f) -> {
+                                team.AddPlayer(player);
+                                inner.removeAll();
+                                popup.dispose();
+                                Refresh();
+                            });
+                            oldPlayer.add(choose, "east");
+                            oldPlayer.setBorder(BorderFactory.createLineBorder(Color.black));
+                            inner.add(oldPlayer);
+                        }
+                    }
+                    innerScroll.getVerticalScrollBar().setUnitIncrement(16);
+                    innerScroll.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+                    popup.add(innerScroll);
+                    popup.setSize(350, 400); 
+                    popup.setLocation(MouseInfo.getPointerInfo().getLocation());
+                    popup.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "You cannot add more than 5 players per team.\nPlease remove one before adding another.");
                 }
-                popup.add(inner);
-                popup.setSize(500, 500); 
-                popup.setLocation(MouseInfo.getPointerInfo().getLocation());
-                popup.setVisible(true);
             });
             
             caller = callerScreen;
@@ -637,7 +728,7 @@ public class WindowManager {
                 team = teamPassed;
                 for (Player player: team.GetPlayers()) {                          
                             JPanel thisPlayer = player.PlayerPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("Edit.png", 16, 16));
+                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 new ModifyPlayerPopup(player, this, null);
@@ -659,6 +750,11 @@ public class WindowManager {
                                     team.RemovePlayer(player);
                                     Refresh();
                                 } else if (answer == 1) {
+                                    // Teams without uniqueID's don't get added to players yet,
+                                    //   so the player needs to be manually removed.
+                                    if (team.uniqueID == -1) {
+                                        team.RemovePlayer(player);
+                                    }
                                     player.Delete();
                                     Refresh();
                                 }
@@ -672,10 +768,10 @@ public class WindowManager {
             } else {
                 // This is a new Team                
                 team = new Team("New Team");
-            }            
-
-            name.setFont(new Font("Ariel", Font.PLAIN, 20));
-            name.select(0, name.getText().length());
+                name.setText(team.name);
+                name.setFont(new Font("Ariel", Font.PLAIN, 20));
+                name.select(0, name.getText().length());
+            }
 
             players.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -705,7 +801,7 @@ public class WindowManager {
             Adam.remove(caller.Eve);
             Adam.add(Eve);            
             Adam.revalidate();
-            Adam.setMinimumSize(new Dimension(400,650));
+            Adam.setMinimumSize(windowSize);
             Adam.repaint();
         }
 
@@ -766,6 +862,7 @@ public class WindowManager {
                                 try {
                                     scrollPane.getVerticalScrollBar().setValue(0);
                                     function.HeroEquals(hero);
+                                    function.MouseEventEquals(evt);
                                     function.call();
                                 } catch (Exception ex) {
                                     Logger.getLogger(WindowManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -801,6 +898,7 @@ public class WindowManager {
                 pool.add(preview);
             }
             scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+            scrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
             pool.add(scrollPane);
         }
     }
