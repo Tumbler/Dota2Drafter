@@ -37,6 +37,7 @@ public class WindowManager {
     public WindowManager(){
         Adam.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main = new MainScreen();
+        int cat = 41;
     }
     
     
@@ -520,10 +521,10 @@ public class WindowManager {
             save.addActionListener((ActionEvent e) -> {                
                 player.name = name.getText();
                 
-                if (player.uniqueID == -1) {
+                if (player.globalIndex == -1) {
                     player.savePlayer();
                 } else {
-                    Global.Players.set(player.uniqueID, player);
+                    Global.Players.set(player.globalIndex, player);
                 }
                 if (team != null) {
                     team.AddPlayer(player);
@@ -658,10 +659,10 @@ public class WindowManager {
             
             save.addActionListener((ActionEvent e) -> {
                 team.name = name.getText();
-                if (team.uniqueID == -1) {
+                if (team.globalIndex == -1) {
                     team.saveTeam();
                 } else {
-                    Global.Teams.set(team.uniqueID, team);
+                    Global.Teams.set(team.globalIndex, team);
                 }
                 callerScreen.Refresh();
                 caller.Return();
@@ -686,7 +687,11 @@ public class WindowManager {
                     for (Player player: Global.Players) {
                         boolean playerInCurrentTeam = false;
                         for (Player teamPlayer: team.GetPlayers()) {
+<<<<<<< Updated upstream
                             if (teamPlayer.uniqueID == player.uniqueID) {
+=======
+                            if (teamPlayer.globalIndex == player.globalIndex) {
+>>>>>>> Stashed changes
                                 playerInCurrentTeam = true;
                                 break;
                             }
@@ -752,7 +757,11 @@ public class WindowManager {
                                 } else if (answer == 1) {
                                     // Teams without uniqueID's don't get added to players yet,
                                     //   so the player needs to be manually removed.
+<<<<<<< Updated upstream
                                     if (team.uniqueID == -1) {
+=======
+                                    if (team.globalIndex == -1) {
+>>>>>>> Stashed changes
                                         team.RemovePlayer(player);
                                     }
                                     player.Delete();

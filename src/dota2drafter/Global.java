@@ -37,8 +37,10 @@ public class Global {
     public static String PICPATH = RESOURCE_PATH + "pics/";
     public static String INFOPATH = RESOURCE_PATH + "info/";
     public final static ImageIcon QUESTIONPIC = ResourceRetriever.GetImage("Question.png", 59, 33);
-    static int i;
-    static int j;
+    public static String TEAM_PATH = (Global.class.getProtectionDomain().getCodeSource().getLocation().getPath()).replaceAll("dota2drafter\\.jar", "").replaceAll("/C", "C") + "/Teams/";
+    public static String PLAYER_PATH = (Global.class.getProtectionDomain().getCodeSource().getLocation().getPath()).replaceAll("dota2drafter\\.jar", "").replaceAll("/C", "C") + "/Players/";
+    public static String EMERGENCY_PLAYER_PATH = ("C:/Dota2Drafter/Players/");
+
     public static boolean ExsistsInPool(String find, Hero[] heroes) {
         // Null check everything before moving on
         if (heroes == null) {
@@ -53,5 +55,28 @@ public class Global {
             }
         }
         return false;
+    }
+    int cat = 41;
+    private static long currentID = 0;
+    public static long RequestUniqueID() {
+        boolean found = true;
+        while (found) {
+            found = false;
+            for (Player player: Players) {
+                if (player.uniqueID == currentID) {
+                    found = true;
+                    currentID++;
+                    break;
+                }
+            }
+            for (Team team: Teams) {
+                if (team.uniqueID == currentID) {
+                    found = true;
+                    currentID++;
+                    break;
+                }
+            }
+        }
+        return currentID++;
     }
 }

@@ -10,13 +10,15 @@ public class Team {
     int poolNumber;
     private int[] players = {-1, -1, -1, -1, -1, -1};
     private int numOfPlayers;
-    int uniqueID;
+    int globalIndex;
+    long uniqueID;
     
     public Team(String n) {
         name = n;
         poolNumber = 0;
         numOfPlayers = 0;
-        uniqueID = -1;
+        globalIndex = -1;
+        int cat = 41;
     }
     
     Hero[] GetHeroPool() {
@@ -37,10 +39,10 @@ public class Team {
     
     int AddPlayer(Player player) {
         if (numOfPlayers < 5) {
-            players[numOfPlayers] = player.uniqueID;
+            players[numOfPlayers] = player.globalIndex;
             numOfPlayers++;
-            if (uniqueID != -1) {
-                player.teams.add(uniqueID);
+            if (globalIndex != -1) {
+                player.teams.add(globalIndex);
             }
             return 0;
         } else {
@@ -51,11 +53,11 @@ public class Team {
     int RemovePlayer(Player player) {
         int returnVal = 0;
         for (int i=0; i < numOfPlayers; i++) {
-            if (player.uniqueID == players[i]) {
+            if (player.globalIndex == players[i]) {
                 returnVal = 1;
                 numOfPlayers--;
-                if (uniqueID != -1) {
-                    player.teams.remove(uniqueID);
+                if (globalIndex != -1) {
+                    player.teams.remove(globalIndex);
                 }
             }
             if (returnVal == 1) {
@@ -69,14 +71,18 @@ public class Team {
     void DeletePlayer(Player player) {
         boolean found = false;
         for (int i=0; i < numOfPlayers; i++) {
+<<<<<<< Updated upstream
             if (player.uniqueID == players[i]) {
+=======
+            if (player.globalIndex == players[i]) {
+>>>>>>> Stashed changes
                 found = true;
                 numOfPlayers--;
             }
             if (found) {
                 players[i] = players[i+1];
             }
-            if (players[i] > player.uniqueID) {
+            if (players[i] > player.globalIndex) {
                 players[i]--;
             }
         }
@@ -101,11 +107,12 @@ public class Team {
     }
     
     void saveTeam() {
-        uniqueID = Global.Teams.size();
+        globalIndex = Global.Teams.size();
         Global.Teams.add(this);
         for (int i=0; i < numOfPlayers; i++) {
-            Global.Players.get(players[i]).teams.add(uniqueID);          
+            Global.Players.get(players[i]).teams.add(globalIndex);          
         }
+        uniqueID = Global.RequestUniqueID();
     }
     
     JPanel TeamPreview() {
@@ -121,11 +128,11 @@ public class Team {
     
     void Delete(){
         Global.Teams.remove(this);
-        for(int i=uniqueID; i < Global.Teams.size(); i++) {
-            Global.Teams.get(i).uniqueID--;
+        for(int i=globalIndex; i < Global.Teams.size(); i++) {
+            Global.Teams.get(i).globalIndex--;
         } 
         for (Player player: GetPlayers()) {
-            Global.Players.get(player.uniqueID).DeleteTeam(this);
+            Global.Players.get(player.globalIndex).DeleteTeam(this);
         }
     }
 }

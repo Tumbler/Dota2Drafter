@@ -1,8 +1,17 @@
 package dota2drafter;
 
 import java.awt.FlowLayout;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
@@ -15,12 +24,13 @@ public class Player {
     // Tracks which teams this player is a part of. (Mostsly for deleting puroses)
     List<Integer> teams = new ArrayList<>();
     String DotaBuffLink;
-    int uniqueID;
+    int globalIndex;
+    long uniqueID;
     
     public Player(String n) {
         name = n;
         playNumber = 0;
-        uniqueID = -1;
+        globalIndex = -1;
     }
     
     void AddHero(Hero hero) {
@@ -52,14 +62,21 @@ public class Player {
     }
     
     void savePlayer() {
-        uniqueID = Global.Players.size();
+        globalIndex = Global.Players.size();
         Global.Players.add(this);
+        uniqueID = Global.RequestUniqueID();
+        WritePlayer();
     }
     
     void Delete() {
         Global.Players.remove(this);        
+<<<<<<< Updated upstream
         for(int i=uniqueID; i < Global.Players.size(); i++) {
             Global.Players.get(i).uniqueID--;
+=======
+        for(int i=globalIndex; i < Global.Players.size(); i++) {
+            Global.Players.get(i).globalIndex--;
+>>>>>>> Stashed changes
         }
         for(int team: teams) {
             Global.Teams.get(team).DeletePlayer(this);
@@ -92,14 +109,60 @@ public class Player {
     void DeleteTeam(Team teamPassed) {
         boolean found = false;
         for (int i=0; i < teams.size(); i++) {
-            if (teamPassed.uniqueID == teams.get(i)) {
+            if (teamPassed.globalIndex == teams.get(i)) {
                 found = true;
                 teams.remove(i);
             }
         }
         for (int i=0; i < teams.size(); i++) {        
-            if (teams.get(i) > teamPassed.uniqueID) {
+            if (teams.get(i) > teamPassed.globalIndex) {
                 teams.set(i, (teams.get(i) - 1));
+            }
+        }
+    }
+    
+    void WritePlayer() {
+        Writer output = null;
+        try {
+            File file;            
+            new File(Global.EMERGENCY_PLAYER_PATH).mkdirs();
+            file = new File(Global.EMERGENCY_PLAYER_PATH + uniqueID + ".txt");
+            file.createNewFile();
+            output = new BufferedWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(
+                    file))));
+            output.write("Name: " + name + "\n");
+            output.write("PlayList: ");
+            for (Hero hero: GetPlayList()) {
+                output.write(hero.abbrv + ",");
+            }   output.write("\n");
+            output.write("GlobalIndex: " + globalIndex + "\n");
+        } catch (FileNotFoundException ex) {
+            try {
+                File file;
+                new File(Global.EMERGENCY_PLAYER_PATH).mkdirs();
+                file = new File(Global.EMERGENCY_PLAYER_PATH + uniqueID + ".txt");
+                file.createNewFile();
+                
+                output = new BufferedWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(
+                        file))));
+                output.write("Name: " + name + "\n");
+                output.write("PlayList: ");
+                for (Hero hero: GetPlayList()) {
+                    output.write(hero.abbrv + ",");
+                }   output.write("\n");
+                output.write("GlobalIndex: " + globalIndex + "\n");
+            } catch (FileNotFoundException ex1) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
+            } catch (IOException ex1) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                output.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
