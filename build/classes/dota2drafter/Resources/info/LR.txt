@@ -1,9 +1,0 @@
-CommonName: Leshrac
-Name: Leshrac
-Title: Tormented Soul
-Abbrv: LR
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,2,4,5,13

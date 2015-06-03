@@ -1,9 +1,0 @@
-CommonName: Phoenix
-Name: Icarus
-Title: Phoenix
-Abbrv: PH
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 3,5,8,10

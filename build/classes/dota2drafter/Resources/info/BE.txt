@@ -1,9 +1,0 @@
-CommonName: Bane
-Name: Atropos
-Title: Bane Elemental
-Abbrv: BE
-Side: Dire
-Attr: Intelligence
-Combos: MR
-Counters: 
-Characteristics: 2,4,5,13,14

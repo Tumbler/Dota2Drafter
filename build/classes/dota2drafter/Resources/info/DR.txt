@@ -1,9 +1,0 @@
-CommonName: Disruptor
-Name: Disrutor
-Title: Stormcrafter
-Abbrv: DR
-Side: Radiant
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 5,12,13

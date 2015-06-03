@@ -1,9 +1,0 @@
-CommonName: Sniper
-Name: Kardel Sharpeye
-Title: Sniper
-Abbrv: SP
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 1,2,5,11,13

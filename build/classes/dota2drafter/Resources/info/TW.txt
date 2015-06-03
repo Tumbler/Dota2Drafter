@@ -1,9 +1,0 @@
-CommonName: Troll
-Name: Jah'rakal
-Title: Troll Warlord
-Abbrv: TW
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 5,11,15

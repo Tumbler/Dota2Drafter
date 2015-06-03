@@ -1,9 +1,0 @@
-CommonName: Crystal Maiden
-Name: Rylai
-Title: Crystal Maiden
-Abbrv: CM
-Side: Radiant
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 2,4,5,13

@@ -1,9 +1,0 @@
-CommonName: Dragon Knight
-Name: Davion
-Title: Dragon Knight
-Abbrv: DK
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,4,7,11

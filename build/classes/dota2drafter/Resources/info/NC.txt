@@ -1,9 +1,0 @@
-CommonName: Necrophos
-Name: Rotund'jere
-Title: Necrophos
-Abbrv: NC
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,2,5,8,13

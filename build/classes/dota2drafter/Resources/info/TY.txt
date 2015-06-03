@@ -1,9 +1,0 @@
-CommonName: Tiny
-Name: Tiny
-Title: Stone Giant
-Abbrv: TY
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,4,5,7,11

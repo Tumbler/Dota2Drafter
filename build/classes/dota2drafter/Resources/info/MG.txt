@@ -1,9 +1,0 @@
-CommonName: Magnus
-Name: Mangus
-Title: Magnoceros
-Abbrv: MG
-Side: Dire
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,4,5

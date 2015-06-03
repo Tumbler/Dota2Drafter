@@ -1,9 +1,0 @@
-CommonName: Ursa
-Name: Ulfsaar
-Title: Ursa Warrior
-Abbrv: UR
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 7,11,15

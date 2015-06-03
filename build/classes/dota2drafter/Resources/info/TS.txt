@@ -1,9 +1,0 @@
-CommonName: Timbersaw
-Name: Rizzrack
-Title: Timbersay
-Abbrv: TS
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,5,7

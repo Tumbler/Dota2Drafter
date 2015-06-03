@@ -1,9 +1,0 @@
-CommonName: Ember Spirit
-Name: Xin
-Title: Ember Spirit
-Abbrv: EM
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 3,5,10,11

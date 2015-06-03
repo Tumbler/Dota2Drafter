@@ -1,9 +1,0 @@
-CommonName: Bristleback
-Name: Rigwarl
-Title: Bristleback
-Abbrv: BB
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 1,5,7,9,11,15

@@ -1,9 +1,0 @@
-CommonName: Slark
-Name: Slark
-Title: Nightcrawler
-Abbrv: SL
-Side: Dire
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 2,6,10,11

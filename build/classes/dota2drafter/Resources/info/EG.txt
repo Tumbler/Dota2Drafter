@@ -1,9 +1,0 @@
-CommonName: Enimga
-Name: Darchrow
-Title: Enimga
-Abbrv: EG
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,4,5,14

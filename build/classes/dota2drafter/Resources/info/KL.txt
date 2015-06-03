@@ -1,9 +1,0 @@
-CommonName: KOTL
-Name: Ezalor
-Title: Keeper of the Light
-Abbrv: KL
-Side: Radiant
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,2,3,5,13

@@ -1,9 +1,0 @@
-CommonName: Warlock
-Name: Demnok Lannic
-Title: Warlock
-Abbrv: WL
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,3,5,8

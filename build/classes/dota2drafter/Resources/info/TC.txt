@@ -1,9 +1,0 @@
-CommonName: Techies
-Name: Squee, Spleen, and Spoon
-Title: Goblin Techies
-Abbrv: TC
-Side: Radiant
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,2,3,6,13

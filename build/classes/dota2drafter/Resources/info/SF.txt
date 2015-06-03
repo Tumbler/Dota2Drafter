@@ -1,9 +1,0 @@
-CommonName: Shadow Fiend
-Name: Nevermore
-Title: Shadow Fiend
-Abbrv: SF
-Side: Dire
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 1,2,5,9,11,13

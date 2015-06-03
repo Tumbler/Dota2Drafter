@@ -1,9 +1,0 @@
-CommonName: Pudge
-Name: Pudge
-Title: Butcher
-Abbrv: PD
-Side: Dire
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,4,7,14

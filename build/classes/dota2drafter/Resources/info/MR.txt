@@ -1,9 +1,0 @@
-CommonName: Mirana
-Name: Mirana
-Title: Princess of the Moon
-Abbrv: MR
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 2,3,5,6

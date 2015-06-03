@@ -1,9 +1,0 @@
-CommonName: Lich
-Name: Ethreain
-Title: Lich
-Abbrv: LI
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 2,5,13,14

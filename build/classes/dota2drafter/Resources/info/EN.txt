@@ -1,9 +1,0 @@
-CommonName: Enchantress
-Name: Auishtha
-Title: Enchantress
-Abbrv: EN
-Side: Radiant
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 2,5,8,13,14

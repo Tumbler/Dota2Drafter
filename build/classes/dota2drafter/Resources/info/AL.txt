@@ -1,9 +1,0 @@
-CommonName: Alchemist
-Name: Razzil Darkbrew
-Title: Alchemist
-Abbrv: AL
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,4,5,7,9,11

@@ -1,9 +1,0 @@
-CommonName: Death Prophet
-Name: Krobelus
-Title: Shadow Priest
-Abbrv: DP
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,2,5,7,10,12,15

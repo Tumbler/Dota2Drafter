@@ -1,9 +1,0 @@
-CommonName: Oracle
-Name: Nerif
-Title: Oracle
-Abbrv: OR
-Side: Radiant
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 2,3,5,8

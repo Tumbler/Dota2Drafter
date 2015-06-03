@@ -1,9 +1,0 @@
-CommonName: Doom
-Name: Lucifer
-Title: Doom
-Abbrv: DM
-Side: Dire
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,7,12

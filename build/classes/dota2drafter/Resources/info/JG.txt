@@ -1,9 +1,0 @@
-CommonName: Juggernaut
-Name: Turnero
-Title: Juggernaut
-Abbrv: JG
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 5,8,11

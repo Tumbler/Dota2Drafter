@@ -1,9 +1,0 @@
-CommonName: Dazzle
-Name: Dazzle
-Title: Shadow Priest
-Abbrv: DZ
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 5,8,13

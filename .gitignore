@@ -1,0 +1,8 @@
+build/*
+build.xml
+dist/*
+manifest.mf
+nbproject/build-impl.xml
+nbproject/genfiles.properties
+nbproject/private/*
+test/*

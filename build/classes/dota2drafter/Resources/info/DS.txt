@@ -1,9 +1,0 @@
-CommonName: Dark Seer
-Name: Ish'kafel
-Title: Dark Seer
-Abbrv: DS
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 3,5

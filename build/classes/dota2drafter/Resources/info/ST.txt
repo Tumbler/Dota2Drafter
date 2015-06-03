@@ -1,9 +1,0 @@
-CommonName: Spectre
-Name: Mercurial
-Title: Spectre
-Abbrv: ST
-Side: Dire
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 1,5,7,10,11

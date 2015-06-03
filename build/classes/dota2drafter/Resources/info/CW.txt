@@ -1,9 +1,0 @@
-CommonName: Clockwerk
-Name: Rattletrap
-Title: Clockwerk
-Abbrv: CW
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 3,5,7,10

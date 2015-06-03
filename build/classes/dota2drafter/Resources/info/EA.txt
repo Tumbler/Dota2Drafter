@@ -1,9 +1,0 @@
-CommonName: Earth Spirit
-Name: Kaolin
-Title: Earth Spirit
-Abbrv: EA
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 3,5,10,12

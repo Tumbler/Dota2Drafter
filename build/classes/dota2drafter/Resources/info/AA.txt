@@ -1,9 +1,0 @@
-CommonName: Ancient Apparition
-Name: Kaldr
-Title: Ancient Apparition
-Abbrv: AA
-Side: Dire
-Attr: Intelligence
-Combos: MP
-Counters: 
-Characteristics: 2,3,5,13

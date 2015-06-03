@@ -1,9 +1,0 @@
-CommonName: Lone Druid
-Name: Sylla
-Title: Lone Druid
-Abbrv: LD
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 3,7,10,11

@@ -1,9 +1,0 @@
-CommonName: OD
-Name: Harbinger
-Title: Ooutworld Devourer
-Abbrv: OD
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 2,5

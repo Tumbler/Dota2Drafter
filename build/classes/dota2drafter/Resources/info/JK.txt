@@ -1,9 +1,0 @@
-CommonName: Jakiro
-Name: Twin Head Dragon
-Title: Jakiro
-Abbrv: JK
-Side: Radiant
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,3,5

@@ -1,9 +1,0 @@
-CommonName: Naga Siren
-Name: Slithice
-Title: Naga Siren
-Abbrv: NG
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 1,3,5,9,11

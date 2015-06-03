@@ -1,9 +1,0 @@
-CommonName: Chaos Knight
-Name: Nessaj
-Title: Chaos Knight
-Abbrv: CK
-Side: Dire
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 2,4,5,7,11

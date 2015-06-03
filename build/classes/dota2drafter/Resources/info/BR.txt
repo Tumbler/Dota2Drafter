@@ -1,9 +1,0 @@
-CommonName: Batrider
-Name: Jin'zakk
-Title: Batrider
-Abbrv: BR
-Side: Dire
-Attr: Intelligence
-Combos: MR
-Counters: SD,VS
-Characteristics: 2,4,5,10

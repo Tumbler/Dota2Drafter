@@ -1,9 +1,0 @@
-CommonName: Axe
-Name: Mogul Khan
-Title: Axe
-Abbrv: AX
-Side: Dire
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 1,4,5,7,14

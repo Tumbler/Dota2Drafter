@@ -1,9 +1,0 @@
-CommonName: Anti Mage
-Name: Magina
-Title: Anti Mage
-Abbrv: AM
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: MP,CM
-Characteristics: 5,10,11

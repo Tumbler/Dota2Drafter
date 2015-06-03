@@ -1,9 +1,0 @@
-CommonName: Pugna
-Name: Pugna
-Title: Oblivion
-Abbrv: PG
-Side: Dire
-Attr: Intelligence
-Combos: 
-Counters: 
-Characteristics: 1,2,8,13

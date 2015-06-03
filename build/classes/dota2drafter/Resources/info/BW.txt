@@ -1,9 +1,0 @@
-CommonName: Brewmaster
-Name: Mangix
-Title: Brewmaster
-Abbrv: BW
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 3,5,14

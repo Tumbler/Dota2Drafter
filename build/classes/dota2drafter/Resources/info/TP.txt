@@ -1,9 +1,0 @@
-CommonName: Treant Protector
-Name: Rooftrellen
-Title: Treant Protector
-Abbrv: TP
-Side: Radiant
-Attr: Strength
-Combos: 
-Counters: 
-Characteristics: 4,5,6,8,14

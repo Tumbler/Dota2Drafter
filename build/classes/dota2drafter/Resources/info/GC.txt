@@ -1,9 +1,0 @@
-CommonName: Gyrocopter
-Name: Aurel
-Title: Gyrocopter
-Abbrv: GC
-Side: Radiant
-Attr: Agility
-Combos: 
-Counters: 
-Characteristics: 2,3,5,11
