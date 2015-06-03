@@ -65,7 +65,7 @@ public class Player {
         globalIndex = Global.Players.size();
         Global.Players.add(this);
         uniqueID = Global.RequestUniqueID();
-        //WritePlayer();
+        WritePlayer();
     }
     
     void Delete() {
@@ -116,7 +116,7 @@ public class Player {
         }
     }
     
-    /*void WritePlayer() {
+    void WritePlayer() {
         Writer output = null;
         try {
             File file;            
@@ -160,5 +160,5 @@ public class Player {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }*/
+    }
 }

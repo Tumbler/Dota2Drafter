@@ -125,7 +125,7 @@ public class WindowManager {
             
             for (Player player: Global.Players) {
                 JPanel thisPlayer = player.PlayerPreview();
-                JButton modify = new JButton(ResourceRetriever.GetImage("Edit.png", 16, 16));
+                JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
                 modify.setMargin(new Insets(0,0,0,0));
                 modify.addActionListener((ActionEvent e) -> {
                     new ModifyPlayerPopup(player, this, null);
@@ -402,7 +402,7 @@ public class WindowManager {
                     } else {
                         for (Player player: Global.Players) {                            
                             JPanel thisPlayer = player.PlayerPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("Edit.png", 16, 16));
+                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 new ModifyPlayerPopup(player, this, null);

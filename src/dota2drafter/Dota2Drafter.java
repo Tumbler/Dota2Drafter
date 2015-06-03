@@ -20,9 +20,7 @@ public class Dota2Drafter {
             // Skip comments
             if (currentLine.substring(0, 2).compareTo("//") != 0) {
                 String currentHero = currentLine;
-                System.out.println("Started on " + currentHero + ".");
-                Global.AllHeroes.put(currentHero, ResourceRetriever.GetHero(currentHero)); 
-                System.out.println("Success on " + currentHero + "!");
+                Global.AllHeroes.put(currentHero, ResourceRetriever.GetHero(currentHero));
             }
         }
 
