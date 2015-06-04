@@ -23,6 +23,9 @@ public class Dota2Drafter {
                 Global.AllHeroes.put(currentHero, ResourceRetriever.GetHero(currentHero));
             }
         }
+        
+        // Load all the current players
+        ResourceRetriever.ReadPlayers();
 
         // Start up the Window Manager
         WindowManager God = new WindowManager();        

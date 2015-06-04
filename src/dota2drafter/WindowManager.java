@@ -525,6 +525,7 @@ public class WindowManager {
                     player.savePlayer();
                 } else {
                     Global.Players.set(player.globalIndex, player);
+                    player.WritePlayer();
                 }
                 if (team != null) {
                     team.AddPlayer(player);
