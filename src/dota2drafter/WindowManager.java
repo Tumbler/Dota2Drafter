@@ -8,6 +8,9 @@ import java.awt.Insets;
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -35,7 +38,19 @@ public class WindowManager {
     BrowseScreen browse;
     
     public WindowManager(){
-        Adam.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        WindowListener exitListener = new WindowAdapter() {            
+            @Override
+            public void windowClosing(WindowEvent e) {                
+                for(Team team: Global.Teams) {
+                    team.WriteTeam();
+                }
+                for(Player player: Global.Players){
+                    player.WritePlayer();
+                }
+                System.exit(0);
+            }
+        };
+        Adam.addWindowListener(exitListener);
         main = new MainScreen();
         int cat = 41;
     }
@@ -858,7 +873,6 @@ public class WindowManager {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                             if (previewFlag) {
                                 portrait.setIcon(hero.portraitLarge);
-                                System.out.println("info text set!");
                                 info.setText(hero.name + " the " + hero.title + "\n");
                             } else {
                                 try {

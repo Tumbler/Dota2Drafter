@@ -167,7 +167,9 @@ public class ResourceRetriever {
                 player.uniqueID = Integer.parseInt(child.getName().replaceAll("\\..*", ""));
                 
                 for (String hero: playList) {
-                    player.AddHero(Global.AllHeroes.get(hero));
+                    if (!hero.isEmpty()) {
+                        player.AddHero(Global.AllHeroes.get(hero));
+                    }
                 }
                 
                 int gIndex = Integer.parseInt(playerInfo[2]);
@@ -181,6 +183,77 @@ public class ResourceRetriever {
                     Global.Players.add(player);
                 } else {
                     Global.Players.set(gIndex, player);
+                }
+                
+                text.close();
+            }
+        }
+    }
+    
+    public static void ReadTeams() throws FileNotFoundException, IOException {
+        File dir = new File(Global.EMERGENCY_TEAM_PATH);
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            
+            Pattern nameP = Pattern.compile("Name: (.*)");
+            Pattern heroesP = Pattern.compile("Hero Pool: (.*)");
+            Pattern indexP = Pattern.compile("GlobalIndex: (.*)");
+            Pattern playersP = Pattern.compile("Players: (.*)");
+            
+            for (File child: directoryListing) {
+                BufferedReader text = new BufferedReader(new FileReader(child));
+
+                String[] TeamInfo = new String[4];
+
+                String line;
+                while((line = text.readLine()) != null){
+                    Matcher NameM = nameP.matcher(line);
+                    Matcher HeroesM = heroesP.matcher(line);
+                    Matcher IndexM = indexP.matcher(line);
+                    Matcher PlayersM = playersP.matcher(line);
+
+                    if (NameM.matches()) {                        
+                        TeamInfo[0] = NameM.group(1);
+                    } else if (HeroesM.matches()) {
+                        TeamInfo[1] = HeroesM.group(1);
+                    } else if (IndexM.matches()) {
+                        TeamInfo[2] = IndexM.group(1);
+                    } else if (PlayersM.matches()) {
+                        TeamInfo[3] = PlayersM.group(1);
+                    }
+                }
+
+                String[] playList = TeamInfo[1].split(",");
+                String[] playersString = TeamInfo[3].split(",");
+                int[] players = new int[playersString.length];
+                for(int i = 0; i < players.length; i++) {
+                    if (!playersString[i].equals(""))  {
+                        players[i] = Integer.parseInt(playersString[i]);
+                    }
+                }
+                
+                Team team = new Team(TeamInfo[0]);
+                team.uniqueID = Integer.parseInt(child.getName().replaceAll("\\..*", ""));
+                
+                for(int i=0; i < players.length; i++) {
+                    team.AddPlayer(Global.Players.get(players[i]));
+                }
+                
+                /*for (String hero: playList) {
+                    team.AddToPool(Global.AllHeroes.get(hero));
+                }*/
+                
+                int gIndex = Integer.parseInt(TeamInfo[2]);
+                team.globalIndex = gIndex;
+                
+                while (gIndex > Global.Teams.size()){
+                    Global.Teams.add(new Team("Fake Team"));
+                }
+                
+                if (gIndex == Global.Teams.size()) {
+                    Global.Teams.add(team);
+                } else {
+                    Global.Teams.set(gIndex, team);
                 }
                 
                 text.close();

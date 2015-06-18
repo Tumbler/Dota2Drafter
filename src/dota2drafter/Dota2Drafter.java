@@ -26,6 +26,7 @@ public class Dota2Drafter {
         
         // Load all the current players
         ResourceRetriever.ReadPlayers();
+        ResourceRetriever.ReadTeams();
 
         // Start up the Window Manager
         WindowManager God = new WindowManager();        

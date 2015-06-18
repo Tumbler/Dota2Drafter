@@ -140,7 +140,7 @@ public class Player {
             output.write("GlobalIndex: " + globalIndex + "\n");
             output.write("Teams: ");
             for (int team: teams) {
-                output.write(team);
+                output.write("" + team);
                 output.write(",");
             }
         } catch (FileNotFoundException ex) {

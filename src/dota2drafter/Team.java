@@ -1,5 +1,14 @@
 package dota2drafter;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
@@ -109,6 +118,7 @@ public class Team {
             Global.Players.get(players[i]).teams.add(globalIndex);          
         }
         uniqueID = Global.RequestUniqueID();
+        WriteTeam();
     }
     
     JPanel TeamPreview() {
@@ -129,6 +139,60 @@ public class Team {
         } 
         for (Player player: GetPlayers()) {
             Global.Players.get(player.globalIndex).DeleteTeam(this);
+        }
+        // Delete them on hard disk
+        File file = new File(Global.EMERGENCY_TEAM_PATH + uniqueID + ".txt");
+        file.delete();
+    }
+    
+    void WriteTeam() {
+        Writer output = null;
+        try {
+            File file;            
+            new File(Global.EMERGENCY_TEAM_PATH).mkdirs();
+            file = new File(Global.EMERGENCY_TEAM_PATH + uniqueID + ".txt");
+            file.createNewFile();
+            output = new BufferedWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file))));
+            output.write("Name: " + name + "\n");
+            output.write("Hero Pool: ");
+            for (int i = 0; i < poolNumber; i++) {
+                output.write(heroPool[i] + ",");
+            }   
+            output.write("\n");
+            output.write("GlobalIndex: " + globalIndex + "\n");
+            output.write("Players: ");
+            for (int i = 0; i < numOfPlayers; i++) {
+                output.write("" + players[i]);
+                output.write(",");
+            }
+        } catch (FileNotFoundException ex) {
+            try {
+                File file;
+                new File(Global.EMERGENCY_PLAYER_PATH).mkdirs();
+                file = new File(Global.EMERGENCY_PLAYER_PATH + uniqueID + ".txt");
+                file.createNewFile();
+                
+                output = new BufferedWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(
+                        file))));
+                output.write("Name: " + name + "\n");
+                output.write("PlayList: ");
+                //for (Hero hero: GetPlayList()) {
+                //    output.write(hero.abbrv + ",");
+                //}   output.write("\n");
+                output.write("GlobalIndex: " + globalIndex + "\n");
+            } catch (FileNotFoundException ex1) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
+            } catch (IOException ex1) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                output.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
