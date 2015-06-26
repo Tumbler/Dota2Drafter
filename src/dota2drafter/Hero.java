@@ -66,4 +66,13 @@ public class Hero {
     String[] GetCombos() {
         return commonCombos;
     }
+    
+    boolean HasCharacteristic(int num) {
+        for(int characteristic: characteristics) {
+            if (characteristic == num) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -80,4 +80,8 @@ public class Global {
         }
         return currentID++;
     }
+    final static int FIRST_BAN = 0;
+    final static int FIRST_PICK = 1;
+    final static int SECOND_BAN = 2;
+    final static int SECOND_PICK = 3;
 }
