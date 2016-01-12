@@ -97,10 +97,6 @@ public class Player {
         return returnList;
     }
     
-    void SortPlayList() {
-        
-    }
-    
     void DeleteTeam(Team teamPassed) {
         boolean found = false;
         for (int i=0; i < teams.size(); i++) {
