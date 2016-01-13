@@ -107,10 +107,8 @@ public class Player {
     }
     
     void DeleteTeam(Team teamPassed) {
-        boolean found = false;
         for (int i=0; i < teams.size(); i++) {
             if (teamPassed.globalIndex == teams.get(i)) {
-                found = true;
                 teams.remove(i);
             }
         }
