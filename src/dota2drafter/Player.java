@@ -1,6 +1,5 @@
 package dota2drafter;
 
-import java.awt.FlowLayout;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
