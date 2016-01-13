@@ -40,8 +40,9 @@ public class Global {
     public static String TEAM_PATH = (Global.class.getProtectionDomain().getCodeSource().getLocation().getPath()).replaceAll("dota2drafter\\.jar", "").replaceAll("/C", "C") + "/Teams/";
     public static String PLAYER_PATH = (Global.class.getProtectionDomain().getCodeSource().getLocation().getPath()).replaceAll("dota2drafter\\.jar", "").replaceAll("/C", "C") + "/Players/";
     public static String EMERGENCY_PLAYER_PATH = ("C:/Dota2Drafter/Players/");
+    public static String EMERGENCY_TEAM_PATH = ("C:/Dota2Drafter/Teams/");
 
-    public static boolean ExsistsInPool(String find, Hero[] heroes) {
+    public static boolean existsInPool(String find, Hero[] heroes) {
         // Null check everything before moving on
         if (heroes == null) {
             return false;
@@ -79,4 +80,8 @@ public class Global {
         }
         return currentID++;
     }
+    final static int FIRST_BAN = 0;
+    final static int FIRST_PICK = 1;
+    final static int SECOND_BAN = 2;
+    final static int SECOND_PICK = 3;
 }

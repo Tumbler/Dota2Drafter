@@ -8,6 +8,9 @@ import java.awt.Insets;
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -24,6 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
 import static javax.swing.ScrollPaneConstants.*;
+import javax.swing.SwingConstants;
 import net.miginfocom.swing.MigLayout;
 
 public class WindowManager {
@@ -35,7 +39,19 @@ public class WindowManager {
     BrowseScreen browse;
     
     public WindowManager(){
-        Adam.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        WindowListener exitListener = new WindowAdapter() {            
+            @Override
+            public void windowClosing(WindowEvent e) {                
+                for(Team team: Global.Teams) {
+                    team.WriteTeam();
+                }
+                for(Player player: Global.Players){
+                    player.WritePlayer();
+                }
+                System.exit(0);
+            }
+        };
+        Adam.addWindowListener(exitListener);
         main = new MainScreen();
         int cat = 41;
     }
@@ -56,7 +72,7 @@ public class WindowManager {
         JPanel playersInner = new JPanel(new MigLayout("flowy", "grow, fill"));
         JScrollPane teamScroll = new JScrollPane(teamsInner);        
         JScrollPane playerScroll = new JScrollPane(playersInner);
-        Dimension windowSize = new Dimension(500, 500);
+        Dimension windowSize = new Dimension(630, 500);
         Screen called;
         
         public MainScreen() {
@@ -168,7 +184,7 @@ public class WindowManager {
             teamDraft.removeAll();
             teams.removeAll();
             players.removeAll();
-            teamsInner.removeAll();;
+            teamsInner.removeAll();
             playersInner.removeAll();
             Eve.removeAll();
             this.DrawScreen();
@@ -179,11 +195,11 @@ public class WindowManager {
     
     class DraftScreen extends Screen{
         JPanel matchup = new JPanel(new MigLayout("inset 0","[0:0, grow, center][center][0:0, grow, center]",""));
-        JPanel myPicks = new JPanel(new MigLayout("inset 0", "grow, center"));
+        JPanel myPicksFrame = new JPanel(new MigLayout("inset 0", "grow, center"));
         JPanel myPicksPortraits = new JPanel(new MigLayout(""));
         JPanel theirPicks = new JPanel(new MigLayout("inset 0", "grow, center"));
         JPanel theirPicksPortraits = new JPanel(new MigLayout(""));
-        JPanel myBans = new JPanel(new MigLayout("inset 0", "grow, center"));
+        JPanel myBansFrame = new JPanel(new MigLayout("inset 0", "grow, center"));
         JPanel myBansPortraits = new JPanel(new MigLayout(""));
         JPanel theirBans = new JPanel(new MigLayout("inset 0", "grow, center"));
         JPanel theirBansPortraits = new JPanel(new MigLayout(""));
@@ -191,39 +207,67 @@ public class WindowManager {
         JPanel theirPool = new JPanel(new MigLayout("inset 0, flowy", "[grow, fill]", ""));
         JLabel teamName = new JLabel("Team #1");
         JLabel enemyName = new JLabel("Team #2");
-        JLabel myPick1 = new JLabel(Global.QUESTIONPIC);
-        JLabel myPick2 = new JLabel(Global.QUESTIONPIC);
-        JLabel myPick3 = new JLabel(Global.QUESTIONPIC);
-        JLabel myPick4 = new JLabel(Global.QUESTIONPIC);
-        JLabel myPick5 = new JLabel(Global.QUESTIONPIC);
-        JLabel myBan1 = new JLabel(Global.QUESTIONPIC);
-        JLabel myBan2 = new JLabel(Global.QUESTIONPIC);
-        JLabel myBan3 = new JLabel(Global.QUESTIONPIC);
-        JLabel myBan4 = new JLabel(Global.QUESTIONPIC);
-        JLabel myBan5 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyPick1 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyPick2 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyPick3 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyPick4 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyPick5 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyBan1 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyBan2 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyBan3 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyBan4 = new JLabel(Global.QUESTIONPIC);
-        JLabel enemyBan5 = new JLabel(Global.QUESTIONPIC);
+        JLabel[] myPicks = {
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC)
+        };
+        JLabel[] myBans = {
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC)
+        };
+        JLabel[] enemyPicks = {
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC)
+        };
+        JLabel[] enemyBans = {
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC),
+            new JLabel(Global.QUESTIONPIC)
+        };
         JLabel player1 = new JLabel("Player #1");
         JLabel player2 = new JLabel("Player #2");
         JLabel player3 = new JLabel("Player #3");
         JLabel player4 = new JLabel("Player #4");
         JLabel player5 = new JLabel("Player #5");
-        Dimension windowSize = new Dimension(700, 1000);
+        JButton back = new JButton("Back");
+        Dimension windowSize = new Dimension(700, 700);
         Team team;
         Screen caller;
+        int firstPick;
+        Draft draft;
+        PoolBuilder allyPool;
+        PoolBuilder enemyPool;
         
         public DraftScreen(Team team, Screen caller) {
-            Eve = new JPanel(new MigLayout("wrap 2", "[grow, center, fill][grow, center, fill]"));
+            Eve = new JPanel(new MigLayout("wrap 2", "[grow, center, fill][grow, fill]"));
             this.team = team;
             this.caller = caller;
+            back.addActionListener((ActionEvent e) -> {
+                caller.Refresh();
+                caller.Return();
+            });
+            Object[] options = {"Us", "Them"};
+            JFrame frame = new JFrame();
+            firstPick = JOptionPane.showOptionDialog(frame,
+                    "Who has first pick?",
+                    "",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[1]);
+            draft = new Draft(firstPick, myPicks, myBans, enemyPicks, enemyBans);
             DrawScreen();
         }
         
@@ -232,66 +276,78 @@ public class WindowManager {
             matchup.add(new JLabel("vs."));
             matchup.add(enemyName);
             
-            myPicks.add(new JLabel("picks"), "span, center, wrap");
-            myPicksPortraits.add(myPick1);
-            myPicksPortraits.add(myPick2);
-            myPicksPortraits.add(myPick3);
-            myPicksPortraits.add(myPick4);
-            myPicksPortraits.add(myPick5);
-            myPicks.add(myPicksPortraits);
+            myPicksFrame.add(new JLabel("picks"), "span, center, wrap");
+            for (JLabel portait: myPicks) {
+                myPicksPortraits.add(portait);
+            }
+            myPicksFrame.add(myPicksPortraits);
             
             theirPicks.add(new JLabel("picks"), "span, center, wrap");
-            theirPicksPortraits.add(enemyPick1);
-            theirPicksPortraits.add(enemyPick2);
-            theirPicksPortraits.add(enemyPick3);
-            theirPicksPortraits.add(enemyPick4);
-            theirPicksPortraits.add(enemyPick5);
+            for (JLabel portait: enemyPicks) {
+                theirPicksPortraits.add(portait);
+            }
             theirPicks.add(theirPicksPortraits);
             
-            myBans.add(new JLabel("bans"), "span, center, wrap");
-            myBansPortraits.add(myBan1);
-            myBansPortraits.add(myBan2);
-            myBansPortraits.add(myBan3);
-            myBansPortraits.add(myBan4);
-            myBansPortraits.add(myBan5);
-            myBans.add(myBansPortraits);
+            myBansFrame.add(new JLabel("bans"), "span, center, wrap");
+            for (JLabel portait: myBans) {
+                myBansPortraits.add(portait);
+            }
+            myBansFrame.add(myBansPortraits);
             
             theirBans.add(new JLabel("bans"), "span, center, wrap");
-            theirBansPortraits.add(enemyBan1);
-            theirBansPortraits.add(enemyBan2);
-            theirBansPortraits.add(enemyBan3);
-            theirBansPortraits.add(enemyBan4);
-            theirBansPortraits.add(enemyBan5);
+            for (JLabel portait: enemyBans) {
+                theirBansPortraits.add(portait);
+            }
             theirBans.add(theirBansPortraits);
             
-            if (team == null) {                
-                players.add(new PoolBuilder(false, "small", null, null).pool);
+            if (team == null) {
+                allyPool = new PoolBuilder(false, "small", null, null);
+                players.add(allyPool.pool);
             } else {
                 for (Player player: team.GetPlayers()) {
                     players.add(new JLabel(player.name));
-                    JPanel heroes = new JPanel(new WrapLayout(FlowLayout.LEADING));
+                    JPanel heroes = new JPanel(new MigLayout("","[grow 49, fill][grow 1][grow 49, fill]"));
+                    JPanel regHeroes = new JPanel(new WrapLayout(FlowLayout.LEADING));
+                    JPanel stunHeroes = new JPanel(new WrapLayout(FlowLayout.LEADING));
+                    int numOfStuns = 0;
                     for (Hero hero: player.GetPlayList()) {
-                        heroes.add(new JLabel(hero.portraitSmall));
+                        if (hero.HasCharacteristic(Global.Characteristics.RSTUN)) {
+                            stunHeroes.add(new JLabel(hero.portraitSmall));
+                            numOfStuns++;
+                        } else {
+                            regHeroes.add(new JLabel(hero.portraitSmall));
+                        }
+                    }
+                    heroes.add(regHeroes);
+                    if (numOfStuns > 0) {
+                        heroes.add(new JSeparator(SwingConstants.VERTICAL), "growy");
+                        heroes.add(stunHeroes);
                     }
                     heroes.setBorder(BorderFactory.createLineBorder(Color.black));
                     players.add(heroes);
                 }
             }
-            theirPool.add(new PoolBuilder(false, "small", null, null).pool);
+            enemyPool = new PoolBuilder(false, "samll", new returner(), null);
+            theirPool.add(enemyPool.pool);
             
             Eve.add(matchup, "span, grow");
-            Eve.add(myPicks, "c");
+            Eve.add(myPicksFrame, "c");
             Eve.add(theirPicks, "c");
-            Eve.add(myBans, "c");
+            Eve.add(myBansFrame, "c");
             Eve.add(theirBans, "c");
-            Eve.add(players);
+            //Eve.add(players, "top, span");
             Eve.add(theirPool);
+            //Eve.add(back);
             
             Adam.setSize(windowSize);
         }
         
         @Override
-        void Refresh() {
+        void Refresh() {    
+            Adam.revalidate();
+            Adam.setMinimumSize(windowSize);
+            Adam.setSize(windowSize);
+            Adam.repaint();
         }
 
         @Override
@@ -305,6 +361,21 @@ public class WindowManager {
 
         @Override
         void Return() {
+            
+        }
+        
+        public class returner extends HeroReturner{
+
+            @Override
+            public Void call() {
+                draft.next(this.hero);
+                enemyPool.disableHero(this.hero);
+                //Eve.remove(theirPool);
+                //Eve.add(players, "top, span");
+                //Refresh();
+                return null;
+            }
+            
         }
     }
     
@@ -432,7 +503,7 @@ public class WindowManager {
                         }
                     }
                     break;
-            }
+            }  
         }
         
         @Override
@@ -451,6 +522,7 @@ public class WindowManager {
             Adam.add(Eve);            
             Adam.revalidate();
             Adam.setMinimumSize(windowSize);
+            Adam.setSize(windowSize);
             Adam.repaint();
         }
 
@@ -511,6 +583,7 @@ public class WindowManager {
         JWindow popup = new JWindow();
         JPanel inner = new JPanel(new MigLayout("", "[grow, fill]", "[grow, fill]"));
         JButton back;
+        PoolBuilder pool;
         
         public ModifyPlayerPopup(Player playerPassed, Screen callerScreen, Team team) {
            
@@ -525,6 +598,7 @@ public class WindowManager {
                     player.savePlayer();
                 } else {
                     Global.Players.set(player.globalIndex, player);
+                    player.WritePlayer();
                 }
                 if (team != null) {
                     team.AddPlayer(player);
@@ -556,7 +630,7 @@ public class WindowManager {
             }
             addHeroes.setMargin(new Insets(0,0,0,0));
             addHeroes.addActionListener((ActionEvent e) -> {
-                PoolBuilder pool = new PoolBuilder(false, "small", new returner(), player.GetPlayList());
+                pool = new PoolBuilder(false, "small", new returner(), player.GetPlayList());
                 back = new JButton("Cancel");
                 back.addActionListener((ActionEvent p) -> {
                     inner.removeAll();
@@ -608,6 +682,7 @@ public class WindowManager {
                 heroes.repaint();
                 if (e.getButton() == 3) {
                     back.setText("Done");
+                    pool.disableHero(this.hero);
                 } else {
                     // Button 1 (Or three I suppose??)
                     inner.removeAll();
@@ -815,7 +890,8 @@ public class WindowManager {
         JPanel pool = new JPanel(new MigLayout("flowy, insets 0,", "grow, fill", ""));
         JPanel preview = new JPanel(new MigLayout("insets 0"));
         JPanel heroes = new JPanel(new MigLayout("wrap 2", "grow, fill", ""));
-        Map<String, JPanel> heroPanels = new HashMap<>();
+        Map<String, JPanel> heroFactions = new HashMap<>();
+        Map<String, JLabel> heroPanels = new HashMap<>();
         JPanel Str = new JPanel(new MigLayout("", "[grow 50][grow 50]", ""));
         JPanel Agi = new JPanel(new MigLayout("", "[grow 50][grow 50]", ""));
         JPanel Int = new JPanel(new MigLayout("", "[grow 50][grow 50]", ""));
@@ -829,12 +905,12 @@ public class WindowManager {
         * @param preview Do you want a hero preview at the top?
         */
         public PoolBuilder(boolean previewFlag, String size, HeroReturner function, Hero[] disableList) {
-            heroPanels.put("RadiantStrength", new JPanel(new WrapLayout(FlowLayout.LEADING)));
-            heroPanels.put("DireStrength", new JPanel(new WrapLayout(FlowLayout.LEADING)));
-            heroPanels.put("RadiantAgility", new JPanel(new WrapLayout(FlowLayout.LEADING)));
-            heroPanels.put("DireAgility", new JPanel(new WrapLayout(FlowLayout.LEADING)));
-            heroPanels.put("RadiantIntelligence", new JPanel(new WrapLayout(FlowLayout.LEADING)));
-            heroPanels.put("DireIntelligence", new JPanel(new WrapLayout(FlowLayout.LEADING)));
+            heroFactions.put("RadiantStrength", new JPanel(new WrapLayout(FlowLayout.LEADING)));
+            heroFactions.put("DireStrength", new JPanel(new WrapLayout(FlowLayout.LEADING)));
+            heroFactions.put("RadiantAgility", new JPanel(new WrapLayout(FlowLayout.LEADING)));
+            heroFactions.put("DireAgility", new JPanel(new WrapLayout(FlowLayout.LEADING)));
+            heroFactions.put("RadiantIntelligence", new JPanel(new WrapLayout(FlowLayout.LEADING)));
+            heroFactions.put("DireIntelligence", new JPanel(new WrapLayout(FlowLayout.LEADING)));
                         
             preview.add(portrait);
             preview.add(info);
@@ -847,9 +923,9 @@ public class WindowManager {
             
             for (Hero hero: Global.AllHeroes.values()){
                 JLabel label = new JLabel(hero.portraitSmall);
-                heroPanels.get(hero.side + hero.attribute).add(label);
+                heroFactions.get(hero.side + hero.attribute).add(label);
                 // Disable the button if the hero it contains matches the disableList.
-                if (Global.ExsistsInPool(hero.abbrv, disableList)) {
+                if (Global.existsInPool(hero.abbrv, disableList)) {
                     label.setEnabled(false);
                 } else {
                     label.addMouseListener(new MouseAdapter() {
@@ -857,42 +933,45 @@ public class WindowManager {
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
                             if (previewFlag) {
                                 portrait.setIcon(hero.portraitLarge);
-                                System.out.println("info text set!");
+                                
                                 info.setText(hero.name + " the " + hero.title + "\n");
                             } else {
-                                try {
-                                    scrollPane.getVerticalScrollBar().setValue(0);
-                                    function.HeroEquals(hero);
-                                    function.MouseEventEquals(evt);
-                                    function.call();
-                                } catch (Exception ex) {
-                                    Logger.getLogger(WindowManager.class.getName()).log(Level.SEVERE, null, ex);
+                                if (label.isEnabled()) {
+                                    try {
+                                        scrollPane.getVerticalScrollBar().setValue(0);
+                                        function.HeroEquals(hero);
+                                        function.MouseEventEquals(evt);
+                                        function.call();
+                                    } catch (Exception ex) {
+                                        Logger.getLogger(WindowManager.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
                                 }
                             }
                         }
                     });
                 }
+                heroPanels.put(hero.abbrv, label);
             }
             
             heroes.add(new JLabel(ResourceRetriever.GetImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
             heroes.add(new JLabel(ResourceRetriever.GetImage("STR.png", 24, 24)), "shrink, center");
             heroes.add(new JLabel(ResourceRetriever.GetImage("Dire.png", 24, 24)), "span, center, grow");
-            Str.add(heroPanels.get("RadiantStrength"), "grow, width 100:pref:260, center");
-            Str.add(heroPanels.get("DireStrength"), "grow, width 100:pref:260, center");
+            Str.add(heroFactions.get("RadiantStrength"), "grow, width 100:pref:260, center");
+            Str.add(heroFactions.get("DireStrength"), "grow, width 100:pref:260, center");
             heroes.add(Str, "span, height min:0:pref");
             
             heroes.add(new JLabel(ResourceRetriever.GetImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
             heroes.add(new JLabel(ResourceRetriever.GetImage("AGI.png", 24, 24)), "shrink, center");
             heroes.add(new JLabel(ResourceRetriever.GetImage("Dire.png", 24, 24)), "span, center, grow");
-            Agi.add(heroPanels.get("RadiantAgility"), "grow, width 100:pref:260, center");
-            Agi.add(heroPanels.get("DireAgility"), "grow, width 100:pref:260, center");
+            Agi.add(heroFactions.get("RadiantAgility"), "grow, width 100:pref:260, center");
+            Agi.add(heroFactions.get("DireAgility"), "grow, width 100:pref:260, center");
             heroes.add(Agi, "span, height pref!");
             
             heroes.add(new JLabel(ResourceRetriever.GetImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
             heroes.add(new JLabel(ResourceRetriever.GetImage("INT.png", 24, 24)), "shrink, center");
             heroes.add(new JLabel(ResourceRetriever.GetImage("Dire.png", 24, 24)), "span, center, grow");
-            Int.add(heroPanels.get("RadiantIntelligence"), "grow, width 100:pref:260, center");
-            Int.add(heroPanels.get("DireIntelligence"), "grow, width 100:pref:260, center");
+            Int.add(heroFactions.get("RadiantIntelligence"), "grow, width 100:pref:260, center");
+            Int.add(heroFactions.get("DireIntelligence"), "grow, width 100:pref:260, center");
             heroes.add(Int, "span, height pref!");
             
             if (previewFlag) {
@@ -901,6 +980,9 @@ public class WindowManager {
             scrollPane.getVerticalScrollBar().setUnitIncrement(16);
             scrollPane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
             pool.add(scrollPane);
+        }
+        public void disableHero(Hero hero) {
+            heroPanels.get(hero.abbrv).setEnabled(false);
         }
     }
 }

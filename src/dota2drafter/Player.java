@@ -69,13 +69,18 @@ public class Player {
     }
     
     void Delete() {
-        Global.Players.remove(this);        
+        Global.Players.remove(this);
         for(int i=globalIndex; i < Global.Players.size(); i++) {
             Global.Players.get(i).globalIndex--;
+            Global.Players.get(i).WritePlayer();
         }
         for(int team: teams) {
             Global.Teams.get(team).DeletePlayer(this);
         }
+        // Delete them on hard disk
+        File file = new File(Global.EMERGENCY_PLAYER_PATH + uniqueID + ".txt");        
+        System.out.println("Deleting: " + Global.EMERGENCY_PLAYER_PATH + uniqueID + ".txt");
+        file.delete();
     }
     
     JPanel PlayerPreview() {
@@ -97,15 +102,9 @@ public class Player {
         return returnList;
     }
     
-    void SortPlayList() {
-        
-    }
-    
     void DeleteTeam(Team teamPassed) {
-        boolean found = false;
         for (int i=0; i < teams.size(); i++) {
             if (teamPassed.globalIndex == teams.get(i)) {
-                found = true;
                 teams.remove(i);
             }
         }
@@ -114,6 +113,7 @@ public class Player {
                 teams.set(i, (teams.get(i) - 1));
             }
         }
+        WritePlayer();
     }
     
     void WritePlayer() {
@@ -129,8 +129,14 @@ public class Player {
             output.write("PlayList: ");
             for (Hero hero: GetPlayList()) {
                 output.write(hero.abbrv + ",");
-            }   output.write("\n");
+            }   
+            output.write("\n");
             output.write("GlobalIndex: " + globalIndex + "\n");
+            output.write("Teams: ");
+            for (int team: teams) {
+                output.write("" + team);
+                output.write(",");
+            }
         } catch (FileNotFoundException ex) {
             try {
                 File file;
