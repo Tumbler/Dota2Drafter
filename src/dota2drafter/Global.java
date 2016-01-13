@@ -41,7 +41,7 @@ public class Global {
     public static String PLAYER_PATH = (Global.class.getProtectionDomain().getCodeSource().getLocation().getPath()).replaceAll("dota2drafter\\.jar", "").replaceAll("/C", "C") + "/Players/";
     public static String EMERGENCY_PLAYER_PATH = ("C:/Dota2Drafter/Players/");
 
-    public static boolean ExsistsInPool(String find, Hero[] heroes) {
+    public static boolean existsInPool(String find, Hero[] heroes) {
         // Null check everything before moving on
         if (heroes == null) {
             return false;
