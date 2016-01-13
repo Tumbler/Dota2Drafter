@@ -609,7 +609,7 @@ public class WindowManager {
             });
             
             if (playerPassed != null) {
-                // We're edditing a current player
+                // We're editing a current player
                 player = playerPassed;
                 for(Hero hero: player.GetPlayList()) {
                     JLabel heroLabel = new JLabel(hero.portraitSmall);
@@ -800,7 +800,7 @@ public class WindowManager {
         void DrawScreen(Team teamPassed) {
             
             if (teamPassed != null) {
-                // We're edditing a current team
+                // We're editing a current team
                 team = teamPassed;
                 for (Player player: team.GetPlayers()) {                          
                             JPanel thisPlayer = player.PlayerPreview();

@@ -19,9 +19,9 @@ import net.miginfocom.swing.MigLayout;
 public class Player {
     String name;
     private Hero[] playList = new Hero[Global.NUMBER_OF_HEROES + 1];
-    // Number of heros they can play
+    // Number of heroes they can play
     private int playNumber;
-    // Tracks which teams this player is a part of. (Mostsly for deleting puroses)
+    // Tracks which teams this player is a part of. (Mostly for deleting purposes)
     List<Integer> teams = new ArrayList<>();
     String DotaBuffLink;
     int globalIndex;
@@ -34,7 +34,7 @@ public class Player {
     }
     
     void AddHero(Hero hero) {
-        // Inserstion sort
+        // Insertion sort
         int i = playNumber;
         if (playNumber == 0){
             playList[0] = hero;

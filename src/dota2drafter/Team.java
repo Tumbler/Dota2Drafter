@@ -76,7 +76,7 @@ public class Team {
         return returnVal;
     }
     
-    // Desn't actually delete, just adjusts for the deletion.
+    // Doesn't actually delete, just adjusts for the deletion.
     void DeletePlayer(Player player) {
         boolean found = false;
         for (int i=0; i < numOfPlayers; i++) {
@@ -101,7 +101,7 @@ public class Team {
     }
     
     void AddHero(Hero hero) {
-        // Inserstion sort
+        // Insertion sort
         // MIGHT BE WRONG!!! PLEASE CHECK THIS!!
         int i = poolNumber;
         while(hero.abbrv.compareTo(heroPool[i]) < 0 && i > 0) {
