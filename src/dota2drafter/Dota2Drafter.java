@@ -14,12 +14,11 @@ public class Dota2Drafter {
         InputStream stream = Dota2Drafter.class.getResourceAsStream( Global.RESOURCE_PATH + "info/HeroList.txt");        
         BufferedReader HeroList = new BufferedReader(new InputStreamReader(stream));
         
-        String currentLine;
+        String currentHero;
         // Iterate through all the heroes to add them.
-        while ((currentLine = HeroList.readLine()) != null) {
+        while ((currentHero = HeroList.readLine()) != null) {
             // Skip comments
-            if (currentLine.substring(0, 2).compareTo("//") != 0) {
-                String currentHero = currentLine;
+            if (currentHero.substring(0, 2).compareTo("//") != 0) {
                 Global.AllHeroes.put(currentHero, ResourceRetriever.GetHero(currentHero));
             }
         }
