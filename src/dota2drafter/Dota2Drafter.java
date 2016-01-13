@@ -1,4 +1,4 @@
-// Authour:         Tumbler41
+// Author:         Tumbler41
 // Last updated:    5/12/2015
 
 package dota2drafter;
