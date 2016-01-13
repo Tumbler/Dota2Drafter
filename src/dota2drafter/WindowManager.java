@@ -184,7 +184,7 @@ public class WindowManager {
             teamDraft.removeAll();
             teams.removeAll();
             players.removeAll();
-            teamsInner.removeAll();;
+            teamsInner.removeAll();
             playersInner.removeAll();
             Eve.removeAll();
             this.DrawScreen();
