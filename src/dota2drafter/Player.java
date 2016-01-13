@@ -102,10 +102,6 @@ public class Player {
         return returnList;
     }
     
-    void SortPlayList() {
-        
-    }
-    
     void DeleteTeam(Team teamPassed) {
         for (int i=0; i < teams.size(); i++) {
             if (teamPassed.globalIndex == teams.get(i)) {
