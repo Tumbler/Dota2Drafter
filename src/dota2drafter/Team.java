@@ -95,7 +95,7 @@ public class Team {
     
     void AddToPool(Hero hero) {
         // Don't want duplicates
-        if (!Global.ExsistsInPool(hero.abbrv, GetHeroPool()) && poolNumber < Global.NUMBER_OF_HEROES) {
+        if (!Global.existsInPool(hero.abbrv, GetHeroPool()) && poolNumber < Global.NUMBER_OF_HEROES) {
            AddHero(hero); 
         }
     }

@@ -925,7 +925,7 @@ public class WindowManager {
                 JLabel label = new JLabel(hero.portraitSmall);
                 heroFactions.get(hero.side + hero.attribute).add(label);
                 // Disable the button if the hero it contains matches the disableList.
-                if (Global.ExsistsInPool(hero.abbrv, disableList)) {
+                if (Global.existsInPool(hero.abbrv, disableList)) {
                     label.setEnabled(false);
                 } else {
                     label.addMouseListener(new MouseAdapter() {
