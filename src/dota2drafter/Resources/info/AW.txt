@@ -1,0 +1,9 @@
+CommonName: Arc Warden
+Name: Zet
+Title: Arc Warden
+Abbrv: AW
+Side: Dire
+Attr: Agility
+Combos: 
+Counters: 
+Characteristics: 11
