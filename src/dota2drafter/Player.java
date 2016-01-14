@@ -96,9 +96,7 @@ public class Player {
     
     Hero[] GetPlayList() {
         Hero[] returnList = new Hero[playNumber];
-        for (int i=0; i < playNumber; i++) {
-            returnList[i] = playList[i];
-        }
+        System.arraycopy(playList, 0, returnList, 0, playNumber);
         return returnList;
     }
     
