@@ -33,7 +33,7 @@ public class Player {
         globalIndex = -1;
     }
     
-    void AddHero(Hero hero) {
+    void addHero(Hero hero) {
         // Insertion sort
         int i = playNumber;
         if (playNumber == 0){
@@ -48,7 +48,7 @@ public class Player {
         playNumber++;
     }    
     
-    void RemoveHero(Hero hero) {
+    void removeHero(Hero hero) {
         boolean found = false;
         for (int i=0; i < playNumber; i++) {
             if (hero.abbrv.matches(playList[i].abbrv)) {
@@ -64,18 +64,18 @@ public class Player {
     void savePlayer() {
         globalIndex = Global.Players.size();
         Global.Players.add(this);
-        uniqueID = Global.RequestUniqueID();
-        WritePlayer();
+        uniqueID = Global.requestUniqueID();
+        writePlayer();
     }
     
-    void Delete() {
+    void delete() {
         Global.Players.remove(this);
         for(int i=globalIndex; i < Global.Players.size(); i++) {
             Global.Players.get(i).globalIndex--;
-            Global.Players.get(i).WritePlayer();
+            Global.Players.get(i).writePlayer();
         }
         for(int team: teams) {
-            Global.Teams.get(team).DeletePlayer(this);
+            Global.Teams.get(team).deletePlayer(this);
         }
         // Delete them on hard disk
         File file = new File(Global.EMERGENCY_PLAYER_PATH + uniqueID + ".txt");        
@@ -83,7 +83,7 @@ public class Player {
         file.delete();
     }
     
-    JPanel PlayerPreview() {
+    JPanel playerPreview() {
         JPanel panel = new JPanel(new MigLayout("", "grow, fill"));
         JPanel S = new JPanel(new MigLayout("wrap 8"));
         for(int i=0; i < this.playNumber; i++) {
@@ -94,7 +94,7 @@ public class Player {
         return panel;
     }
     
-    Hero[] GetPlayList() {
+    Hero[] getPlayList() {
         Hero[] returnList = new Hero[playNumber];
         for (int i=0; i < playNumber; i++) {
             returnList[i] = playList[i];
@@ -102,7 +102,7 @@ public class Player {
         return returnList;
     }
     
-    void DeleteTeam(Team teamPassed) {
+    void deleteTeam(Team teamPassed) {
         for (int i=0; i < teams.size(); i++) {
             if (teamPassed.globalIndex == teams.get(i)) {
                 teams.remove(i);
@@ -113,10 +113,10 @@ public class Player {
                 teams.set(i, (teams.get(i) - 1));
             }
         }
-        WritePlayer();
+        writePlayer();
     }
     
-    void WritePlayer() {
+    void writePlayer() {
         Writer output = null;
         try {
             File file;            
@@ -127,7 +127,7 @@ public class Player {
                     file))));
             output.write("Name: " + name + "\n");
             output.write("PlayList: ");
-            for (Hero hero: GetPlayList()) {
+            for (Hero hero: getPlayList()) {
                 output.write(hero.abbrv + ",");
             }   
             output.write("\n");
@@ -148,7 +148,7 @@ public class Player {
                         file))));
                 output.write("Name: " + name + "\n");
                 output.write("PlayList: ");
-                for (Hero hero: GetPlayList()) {
+                for (Hero hero: getPlayList()) {
                     output.write(hero.abbrv + ",");
                 }   output.write("\n");
                 output.write("GlobalIndex: " + globalIndex + "\n");

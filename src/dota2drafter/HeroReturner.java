@@ -6,10 +6,10 @@ import java.util.concurrent.Callable;
 public abstract class HeroReturner implements Callable<Void> {
     Hero hero;
     MouseEvent e;
-    void HeroEquals(Hero hero){
+    void heroEquals(Hero hero){
         this.hero = hero;
     }
-    void MouseEventEquals(MouseEvent e) {
+    void mouseEventEquals(MouseEvent e) {
         this.e = e;
     }
 }

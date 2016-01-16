@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
 
 public class ResourceRetriever {
     
-    public static ImageIcon GetImage(String image, int x, int y) {
+    public static ImageIcon getImage(String image, int x, int y) {
         try {
             URL ImageToURL = Dota2Drafter.class.getResource(Global.PICPATH + image);
             Image rescale = ImageIO.read(ImageToURL);
@@ -32,7 +32,7 @@ public class ResourceRetriever {
 
     }
     
-    public static Hero GetHero(String hero) throws IOException{
+    public static Hero getHero(String hero) throws IOException{
         InputStream stream = ResourceRetriever.class.getResourceAsStream(Global.RESOURCE_PATH + "info/" + hero + ".txt");
         BufferedReader text = new BufferedReader(new InputStreamReader(stream));
         
@@ -113,14 +113,14 @@ public class ResourceRetriever {
                 portraits
         );
         
-        returnHero.AddCombos(combos);
-        returnHero.AddCounters(counters);
-        returnHero.AddCharacters(characters);
+        returnHero.addCombos(combos);
+        returnHero.addCounters(counters);
+        returnHero.addCharacters(characters);
         
         return returnHero;
     }
     
-    public static void ReadPlayers() throws FileNotFoundException, IOException {
+    public static void readPlayers() throws FileNotFoundException, IOException {
         File dir = new File(Global.EMERGENCY_PLAYER_PATH);
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
@@ -167,7 +167,7 @@ public class ResourceRetriever {
                 
                 for (String hero: playList) {
                     if (!hero.isEmpty()) {
-                        player.AddHero(Global.AllHeroes.get(hero));
+                        player.addHero(Global.AllHeroes.get(hero));
                     }
                 }
                 
@@ -189,7 +189,7 @@ public class ResourceRetriever {
         }
     }
     
-    public static void ReadTeams() throws FileNotFoundException, IOException {
+    public static void readTeams() throws FileNotFoundException, IOException {
         File dir = new File(Global.EMERGENCY_TEAM_PATH);
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
@@ -235,11 +235,11 @@ public class ResourceRetriever {
                 team.uniqueID = Integer.parseInt(child.getName().replaceAll("\\..*", ""));
                 
                 for(int i=0; i < players.length; i++) {
-                    team.AddPlayer(Global.Players.get(players[i]));
+                    team.addPlayer(Global.Players.get(players[i]));
                 }
                 
                 /*for (String hero: playList) {
-                    team.AddToPool(Global.AllHeroes.get(hero));
+                    team.addToPool(Global.AllHeroes.get(hero));
                 }*/
                 
                 int gIndex = Integer.parseInt(TeamInfo[2]);

@@ -36,7 +36,7 @@ public class Global {
     public static String SMALLPATH = RESOURCE_PATH + "pics/small/";    
     public static String PICPATH = RESOURCE_PATH + "pics/";
     public static String INFOPATH = RESOURCE_PATH + "info/";
-    public final static ImageIcon QUESTIONPIC = ResourceRetriever.GetImage("Question.png", 59, 33);
+    public final static ImageIcon QUESTIONPIC = ResourceRetriever.getImage("Question.png", 59, 33);
     public static String TEAM_PATH = (Global.class.getProtectionDomain().getCodeSource().getLocation().getPath()).replaceAll("dota2drafter\\.jar", "").replaceAll("/C", "C") + "/Teams/";
     public static String PLAYER_PATH = (Global.class.getProtectionDomain().getCodeSource().getLocation().getPath()).replaceAll("dota2drafter\\.jar", "").replaceAll("/C", "C") + "/Players/";
     public static String EMERGENCY_PLAYER_PATH = ("C:/Dota2Drafter/Players/");
@@ -59,7 +59,7 @@ public class Global {
     }
     int cat = 41;
     private static long currentID = 0;
-    public static long RequestUniqueID() {
+    public static long requestUniqueID() {
         boolean found = true;
         while (found) {
             found = false;
