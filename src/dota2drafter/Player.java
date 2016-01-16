@@ -152,8 +152,6 @@ public class Player {
                     output.write(hero.abbrv + ",");
                 }   output.write("\n");
                 output.write("GlobalIndex: " + globalIndex + "\n");
-            } catch (FileNotFoundException ex1) {
-                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (IOException ex1) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
             }
