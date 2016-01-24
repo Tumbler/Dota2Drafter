@@ -735,9 +735,9 @@ public class WindowManager {
             save.addActionListener((ActionEvent e) -> {
                 team.name = name.getText();
                 if (team.globalIndex == -1) {
-                    team.saveTeam();
+                    team.saveTeam(true);
                 } else {
-                    Global.Teams.set(team.globalIndex, team);
+                    team.saveTeam(false);
                 }
                 callerScreen.Refresh();
                 caller.Return();

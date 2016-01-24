@@ -111,13 +111,17 @@ public class Team {
         heroPool[i] = hero.abbrv;
     }
     
-    void saveTeam() {
-        globalIndex = Global.Teams.size();
-        Global.Teams.add(this);
+    void saveTeam(boolean isNewTeam) {
+        if (isNewTeam) {
+            globalIndex = Global.Teams.size();
+            Global.Teams.add(this);            
+            uniqueID = Global.RequestUniqueID();
+        } else {
+            Global.Teams.set(this.globalIndex, this);
+        }
         for (int i=0; i < numOfPlayers; i++) {
             Global.Players.get(players[i]).teams.add(globalIndex);          
         }
-        uniqueID = Global.RequestUniqueID();
         WriteTeam();
     }
     
