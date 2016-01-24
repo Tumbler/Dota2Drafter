@@ -327,7 +327,7 @@ public class WindowManager {
                     players.add(heroes);
                 }
             }
-            enemyPool = new PoolBuilder(false, "samll", new returner(), null);
+            enemyPool = new PoolBuilder(false, "small", new returner(), null);
             theirPool.add(enemyPool.pool);
             
             Eve.add(matchup, "span, grow");
