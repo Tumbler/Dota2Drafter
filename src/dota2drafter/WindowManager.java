@@ -327,7 +327,7 @@ public class WindowManager {
                     players.add(heroes);
                 }
             }
-            enemyPool = new PoolBuilder(false, "samll", new Returner(), null);
+            enemyPool = new PoolBuilder(false, "small", new Returner(), null);
             theirPool.add(enemyPool.pool);
             
             Eve.add(matchup, "span, grow");
@@ -735,9 +735,9 @@ public class WindowManager {
             save.addActionListener((ActionEvent e) -> {
                 team.name = name.getText();
                 if (team.globalIndex == -1) {
-                    team.saveTeam();
+                    team.saveTeam(true);
                 } else {
-                    Global.Teams.set(team.globalIndex, team);
+                    team.saveTeam(false);
                 }
                 callerScreen.refresh();
                 caller.Return();

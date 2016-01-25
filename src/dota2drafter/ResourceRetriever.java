@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -120,7 +119,7 @@ public class ResourceRetriever {
         return returnHero;
     }
     
-    public static void readPlayers() throws FileNotFoundException, IOException {
+    public static void readPlayers() throws IOException {
         File dir = new File(Global.EMERGENCY_PLAYER_PATH);
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {
@@ -189,7 +188,7 @@ public class ResourceRetriever {
         }
     }
     
-    public static void readTeams() throws FileNotFoundException, IOException {
+    public static void readTeams() throws IOException {
         File dir = new File(Global.EMERGENCY_TEAM_PATH);
         File[] directoryListing = dir.listFiles();
         if (directoryListing != null) {

@@ -1,6 +1,5 @@
 package dota2drafter;
 
-import java.awt.FlowLayout;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -96,9 +95,7 @@ public class Player {
     
     Hero[] getPlayList() {
         Hero[] returnList = new Hero[playNumber];
-        for (int i=0; i < playNumber; i++) {
-            returnList[i] = playList[i];
-        }
+        System.arraycopy(playList, 0, returnList, 0, playNumber);
         return returnList;
     }
     
@@ -152,8 +149,6 @@ public class Player {
                     output.write(hero.abbrv + ",");
                 }   output.write("\n");
                 output.write("GlobalIndex: " + globalIndex + "\n");
-            } catch (FileNotFoundException ex1) {
-                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (IOException ex1) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
             }

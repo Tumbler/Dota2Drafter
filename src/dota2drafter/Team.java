@@ -111,13 +111,17 @@ public class Team {
         heroPool[i] = hero.abbrv;
     }
     
-    void saveTeam() {
-        globalIndex = Global.Teams.size();
-        Global.Teams.add(this);
+    void saveTeam(boolean isNewTeam) {
+        if (isNewTeam) {
+            globalIndex = Global.Teams.size();
+            Global.Teams.add(this);            
+            uniqueID = Global.RequestUniqueID();
+        } else {
+            Global.Teams.set(this.globalIndex, this);
+        }
         for (int i=0; i < numOfPlayers; i++) {
             Global.Players.get(players[i]).teams.add(globalIndex);          
         }
-        uniqueID = Global.requestUniqueID();
         writeTeam();
     }
     
@@ -180,8 +184,6 @@ public class Team {
                 //    output.write(hero.abbrv + ",");
                 //}   output.write("\n");
                 output.write("GlobalIndex: " + globalIndex + "\n");
-            } catch (FileNotFoundException ex1) {
-                Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (IOException ex1) {
                 Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex1);
             }

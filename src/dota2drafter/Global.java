@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 
 public class Global {
-    public final static int NUMBER_OF_HEROES = 110;
+    public final static int NUMBER_OF_HEROES = 111;
     public final static String RESOURCE_PATH = "/dota2drafter/Resources/";
     public final class Characteristics {
         // push, nuke, stun, rstun, teamfight, invisible, tank, heal, minus armor, mobile, physical damage, silence, squishy
