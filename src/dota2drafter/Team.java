@@ -115,7 +115,7 @@ public class Team {
         if (isNewTeam) {
             globalIndex = Global.Teams.size();
             Global.Teams.add(this);            
-            uniqueID = Global.RequestUniqueID();
+            uniqueID = Global.requestUniqueID();
         } else {
             Global.Teams.set(this.globalIndex, this);
         }
