@@ -19,13 +19,13 @@ public class Dota2Drafter {
         while ((currentHero = HeroList.readLine()) != null) {
             // Skip comments
             if (currentHero.substring(0, 2).compareTo("//") != 0) {
-                Global.AllHeroes.put(currentHero, ResourceRetriever.GetHero(currentHero));
+                Global.AllHeroes.put(currentHero, ResourceRetriever.getHero(currentHero));
             }
         }
         
         // Load all the current players
-        ResourceRetriever.ReadPlayers();
-        ResourceRetriever.ReadTeams();
+        ResourceRetriever.readPlayers();
+        ResourceRetriever.readTeams();
 
         // Start up the Window Manager
         WindowManager God = new WindowManager();        

@@ -30,7 +30,7 @@ public class Team {
         int cat = 41;
     }
     
-    Hero[] GetHeroPool() {
+    Hero[] getHeroPool() {
         Hero[] returnList = new Hero[numOfPlayers];
         for (int i=0; i < poolNumber; i++) {
             returnList[i] = Global.AllHeroes.get(heroPool[i]);
@@ -38,7 +38,7 @@ public class Team {
         return returnList;
     }
     
-    Player[] GetPlayers(){
+    Player[] getPlayers(){
         Player[] returnList = new Player[numOfPlayers];
         for (int i=0; i < numOfPlayers; i++) {
             returnList[i] = Global.Players.get(players[i]);
@@ -46,7 +46,7 @@ public class Team {
         return returnList;
     }
     
-    int AddPlayer(Player player) {
+    int addPlayer(Player player) {
         if (numOfPlayers < 5) {
             players[numOfPlayers] = player.globalIndex;
             numOfPlayers++;
@@ -59,7 +59,7 @@ public class Team {
         }
     }
     
-    int RemovePlayer(Player player) {
+    int removePlayer(Player player) {
         int returnVal = 0;
         for (int i=0; i < numOfPlayers; i++) {
             if (player.globalIndex == players[i]) {
@@ -77,7 +77,7 @@ public class Team {
     }
     
     // Doesn't actually delete, just adjusts for the deletion.
-    void DeletePlayer(Player player) {
+    void deletePlayer(Player player) {
         boolean found = false;
         for (int i=0; i < numOfPlayers; i++) {
             if (player.globalIndex == players[i]) {
@@ -93,14 +93,14 @@ public class Team {
         }
     }
     
-    void AddToPool(Hero hero) {
+    void addToPool(Hero hero) {
         // Don't want duplicates
-        if (!Global.existsInPool(hero.abbrv, GetHeroPool()) && poolNumber < Global.NUMBER_OF_HEROES) {
-           AddHero(hero); 
+        if (!Global.existsInPool(hero.abbrv, getHeroPool()) && poolNumber < Global.NUMBER_OF_HEROES) {
+           addHero(hero);
         }
     }
     
-    void AddHero(Hero hero) {
+    void addHero(Hero hero) {
         // Insertion sort
         // MIGHT BE WRONG!!! PLEASE CHECK THIS!!
         int i = poolNumber;
@@ -122,13 +122,13 @@ public class Team {
         for (int i=0; i < numOfPlayers; i++) {
             Global.Players.get(players[i]).teams.add(globalIndex);          
         }
-        WriteTeam();
+        writeTeam();
     }
     
-    JPanel TeamPreview() {
+    JPanel teamPreview() {
         JPanel panel = new JPanel(new MigLayout("", "grow, fill"));
         JPanel S = new JPanel(new MigLayout("", "grow, fill"));
-        for(Player player: GetPlayers()) {
+        for(Player player: getPlayers()) {
             S.add(new JLabel(player.name));
         }
         panel.add(S, "south, growx");
@@ -136,20 +136,20 @@ public class Team {
         return panel;
     }
     
-    void Delete(){
+    void delete(){
         Global.Teams.remove(this);
         for(int i=globalIndex; i < Global.Teams.size(); i++) {
             Global.Teams.get(i).globalIndex--;
         } 
-        for (Player player: GetPlayers()) {
-            Global.Players.get(player.globalIndex).DeleteTeam(this);
+        for (Player player: getPlayers()) {
+            Global.Players.get(player.globalIndex).deleteTeam(this);
         }
         // Delete them on hard disk
         File file = new File(Global.EMERGENCY_TEAM_PATH + uniqueID + ".txt");
         file.delete();
     }
     
-    void WriteTeam() {
+    void writeTeam() {
         Writer output = null;
         try {
             File file;            
@@ -180,7 +180,7 @@ public class Team {
                         file))));
                 output.write("Name: " + name + "\n");
                 output.write("PlayList: ");
-                //for (Hero hero: GetPlayList()) {
+                //for (Hero hero: getPlayList()) {
                 //    output.write(hero.abbrv + ",");
                 //}   output.write("\n");
                 output.write("GlobalIndex: " + globalIndex + "\n");

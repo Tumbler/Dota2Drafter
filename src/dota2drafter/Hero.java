@@ -38,36 +38,36 @@ public class Hero {
         characteristicsNum = 0;
     }
     
-    void AddCounters(String[] counters){
+    void addCounters(String[] counters){
         for (String counter : counters) {
             commonCounters[currentCounters] = counter;
             currentCounters++;
         }
     }
     
-    void AddCombos(String[] combos){
+    void addCombos(String[] combos){
         for (String combo : combos) {
             commonCombos[currentCombos] = combo;
             currentCombos++;
         }
     }
     
-    void AddCharacters(int[] characters){
+    void addCharacters(int[] characters){
         for (int character : characters) {
             characteristics[characteristicsNum] = character;
             characteristicsNum++;
         }
     }
     
-    String[] GetCounters() {
+    String[] getCounters() {
         return commonCounters;
     }
     
-    String[] GetCombos() {
+    String[] getCombos() {
         return commonCombos;
     }
     
-    boolean HasCharacteristic(int num) {
+    boolean hasCharacteristic(int num) {
         for(int characteristic: characteristics) {
             if (characteristic == num) {
                 return true;

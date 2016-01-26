@@ -43,10 +43,10 @@ public class WindowManager {
             @Override
             public void windowClosing(WindowEvent e) {                
                 for(Team team: Global.Teams) {
-                    team.WriteTeam();
+                    team.writeTeam();
                 }
                 for(Player player: Global.Players){
-                    player.WritePlayer();
+                    player.writePlayer();
                 }
                 System.exit(0);
             }
@@ -109,21 +109,21 @@ public class WindowManager {
             playerScroll.getVerticalScrollBar().setUnitIncrement(16);
             playerScroll.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
             
-            this.DrawScreen();          
+            this.drawScreen();
             
             Adam.setMinimumSize(windowSize);
             Adam.setLocationRelativeTo(null);
             Adam.setVisible(true);
         }
         
-        void DrawScreen () {
+        void drawScreen() {
             
             teams.add(myTeams);
             teams.add(manageTeams, "growx");
             teams.add(new JSeparator(), "growx");
             
             for (Team team: Global.Teams) {
-                JPanel thisTeam = team.TeamPreview();
+                JPanel thisTeam = team.teamPreview();
                 JButton startTeam = new JButton("Draft!");
                 startTeam.addActionListener((ActionEvent e) -> {
                     DraftScreen called = new DraftScreen(team, this);
@@ -140,8 +140,8 @@ public class WindowManager {
             players.add(new JSeparator());
             
             for (Player player: Global.Players) {
-                JPanel thisPlayer = player.PlayerPreview();
-                JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
+                JPanel thisPlayer = player.playerPreview();
+                JButton modify = new JButton(ResourceRetriever.getImage("edit.png", 16, 16));
                 modify.setMargin(new Insets(0,0,0,0));
                 modify.addActionListener((ActionEvent e) -> {
                     new ModifyPlayerPopup(player, this, null);
@@ -180,14 +180,14 @@ public class WindowManager {
         }
 
         @Override
-        void Refresh() {
+        void refresh() {
             teamDraft.removeAll();
             teams.removeAll();
             players.removeAll();
             teamsInner.removeAll();
             playersInner.removeAll();
             Eve.removeAll();
-            this.DrawScreen();
+            this.drawScreen();
             Eve.revalidate();
             Eve.repaint();
         }
@@ -254,7 +254,7 @@ public class WindowManager {
             this.team = team;
             this.caller = caller;
             back.addActionListener((ActionEvent e) -> {
-                caller.Refresh();
+                caller.refresh();
                 caller.Return();
             });
             Object[] options = {"Us", "Them"};
@@ -268,10 +268,10 @@ public class WindowManager {
                     options,
                     options[1]);
             draft = new Draft(firstPick, myPicks, myBans, enemyPicks, enemyBans);
-            DrawScreen();
+            drawScreen();
         }
         
-        void DrawScreen() {
+        void drawScreen() {
             matchup.add(teamName);
             matchup.add(new JLabel("vs."));
             matchup.add(enemyName);
@@ -304,14 +304,14 @@ public class WindowManager {
                 allyPool = new PoolBuilder(false, "small", null, null);
                 players.add(allyPool.pool);
             } else {
-                for (Player player: team.GetPlayers()) {
+                for (Player player: team.getPlayers()) {
                     players.add(new JLabel(player.name));
                     JPanel heroes = new JPanel(new MigLayout("","[grow 49, fill][grow 1][grow 49, fill]"));
                     JPanel regHeroes = new JPanel(new WrapLayout(FlowLayout.LEADING));
                     JPanel stunHeroes = new JPanel(new WrapLayout(FlowLayout.LEADING));
                     int numOfStuns = 0;
-                    for (Hero hero: player.GetPlayList()) {
-                        if (hero.HasCharacteristic(Global.Characteristics.RSTUN)) {
+                    for (Hero hero: player.getPlayList()) {
+                        if (hero.hasCharacteristic(Global.Characteristics.RSTUN)) {
                             stunHeroes.add(new JLabel(hero.portraitSmall));
                             numOfStuns++;
                         } else {
@@ -327,7 +327,7 @@ public class WindowManager {
                     players.add(heroes);
                 }
             }
-            enemyPool = new PoolBuilder(false, "small", new returner(), null);
+            enemyPool = new PoolBuilder(false, "small", new Returner(), null);
             theirPool.add(enemyPool.pool);
             
             Eve.add(matchup, "span, grow");
@@ -343,7 +343,7 @@ public class WindowManager {
         }
         
         @Override
-        void Refresh() {    
+        void refresh() {
             Adam.revalidate();
             Adam.setMinimumSize(windowSize);
             Adam.setSize(windowSize);
@@ -364,7 +364,7 @@ public class WindowManager {
             
         }
         
-        public class returner extends HeroReturner{
+        public class Returner extends HeroReturner{
 
             @Override
             public Void call() {
@@ -372,7 +372,7 @@ public class WindowManager {
                 enemyPool.disableHero(this.hero);
                 //Eve.remove(theirPool);
                 //Eve.add(players, "top, span");
-                //Refresh();
+                //refresh();
                 return null;
             }
             
@@ -384,7 +384,7 @@ public class WindowManager {
         JPanel view = new JPanel(new MigLayout("flowy", "grow, fill"));
         JScrollPane viewScroll = new JScrollPane(view);
         JButton back = new JButton("Back");
-        JButton addB = new JButton(ResourceRetriever.GetImage("plus.png", 16, 16));
+        JButton addB = new JButton(ResourceRetriever.getImage("plus.png", 16, 16));
         JLabel label = new JLabel();
         String type;
         Dimension windowSize = new Dimension(400, 400);
@@ -398,7 +398,7 @@ public class WindowManager {
             this.type = type;
             
             back.addActionListener((ActionEvent e) -> {
-                caller.Refresh();
+                caller.refresh();
                 caller.Return();
             });
             addB.setMargin(new Insets(0,0,0,0));
@@ -415,10 +415,10 @@ public class WindowManager {
             
             viewScroll.getVerticalScrollBar().setUnitIncrement(16);
             
-            this.DrawScreen();
+            this.drawScreen();
         }
         
-        void DrawScreen() {
+        void drawScreen() {
             
             
             Eve.add(back, "span 2");
@@ -434,14 +434,14 @@ public class WindowManager {
                         view.add(new JLabel("No teams to display"));
                     } else {
                         for (Team team: Global.Teams) {
-                            JPanel thisTeam = team.TeamPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
+                            JPanel thisTeam = team.teamPreview();
+                            JButton modify = new JButton(ResourceRetriever.getImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 called = new ModifyTeamScreen(team, this);
                                 called.Switch();
                             });
-                            JButton delete = new JButton(ResourceRetriever.GetImage("X.png", 16, 16));
+                            JButton delete = new JButton(ResourceRetriever.getImage("X.png", 16, 16));
                             delete.setMargin(new Insets(0,0,0,0));
                             delete.addActionListener((ActionEvent e) -> {
                                 Object[] options = {"Yes", "No"};
@@ -455,8 +455,8 @@ public class WindowManager {
                                         options,
                                         options[1]);
                                 if (answer == 0) {
-                                    team.Delete();
-                                    Refresh();
+                                    team.delete();
+                                    refresh();
                                 }
                             });
                             thisTeam.add(delete, "east");
@@ -472,13 +472,13 @@ public class WindowManager {
                         view.add(new JLabel("No players to display"));
                     } else {
                         for (Player player: Global.Players) {                            
-                            JPanel thisPlayer = player.PlayerPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
+                            JPanel thisPlayer = player.playerPreview();
+                            JButton modify = new JButton(ResourceRetriever.getImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 new ModifyPlayerPopup(player, this, null);
                             });
-                            JButton delete = new JButton(ResourceRetriever.GetImage("X.png", 16, 16));
+                            JButton delete = new JButton(ResourceRetriever.getImage("X.png", 16, 16));
                             delete.setMargin(new Insets(0,0,0,0));
                             delete.addActionListener((ActionEvent e) -> {
                                 Object[] options = {"I didn't like him anyways...", "No"};
@@ -492,8 +492,8 @@ public class WindowManager {
                                         options,
                                         options[1]);
                                 if (answer == 0) {
-                                    player.Delete();
-                                    Refresh();
+                                    player.delete();
+                                    refresh();
                                 }
                             });
                             thisPlayer.add(delete, "east");
@@ -507,11 +507,11 @@ public class WindowManager {
         }
         
         @Override
-        void Refresh() {
+        void refresh() {
             info.removeAll();
             view.removeAll();
             Eve.removeAll();
-            this.DrawScreen();
+            this.drawScreen();
             Eve.revalidate();
             Eve.repaint();
         }
@@ -562,7 +562,7 @@ public class WindowManager {
         }
 
         @Override
-        void Refresh() {            
+        void refresh() {
         }
 
         @Override
@@ -576,7 +576,7 @@ public class WindowManager {
         JPanel south = new JPanel(new MigLayout("wrap 2", "[][grow]", "[][grow][]"));
         JPanel heroes = new JPanel(new WrapLayout(FlowLayout.LEADING));
         JTextField name = new JTextField("Player Name");
-        JButton addHeroes = new JButton(ResourceRetriever.GetImage("plus.png", 16, 16));
+        JButton addHeroes = new JButton(ResourceRetriever.getImage("plus.png", 16, 16));
         JButton cancel = new JButton("Cancel");
         JButton save = new JButton("Save");
         Player player;
@@ -598,26 +598,26 @@ public class WindowManager {
                     player.savePlayer();
                 } else {
                     Global.Players.set(player.globalIndex, player);
-                    player.WritePlayer();
+                    player.writePlayer();
                 }
                 if (team != null) {
-                    team.AddPlayer(player);
+                    team.addPlayer(player);
                 }
                 
-                callerScreen.Refresh();
+                callerScreen.refresh();
                 Cain.dispose();
             });
             
             if (playerPassed != null) {
                 // We're editing a current player
                 player = playerPassed;
-                for(Hero hero: player.GetPlayList()) {
+                for(Hero hero: player.getPlayList()) {
                     JLabel heroLabel = new JLabel(hero.portraitSmall);
                     heroLabel.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(java.awt.event.MouseEvent evt) {
-                            player.RemoveHero(hero);
-                            Refresh();
+                            player.removeHero(hero);
+                            refresh();
                         }
                     });
                     heroes.add(heroLabel);
@@ -630,7 +630,7 @@ public class WindowManager {
             }
             addHeroes.setMargin(new Insets(0,0,0,0));
             addHeroes.addActionListener((ActionEvent e) -> {
-                pool = new PoolBuilder(false, "small", new returner(), player.GetPlayList());
+                pool = new PoolBuilder(false, "small", new Returner(), player.getPlayList());
                 back = new JButton("Cancel");
                 back.addActionListener((ActionEvent p) -> {
                     inner.removeAll();
@@ -664,16 +664,16 @@ public class WindowManager {
             Cain.setMinimumSize(new Dimension(400, 350));
             Cain.setVisible(true);
         }
-        public class returner extends HeroReturner{
+        public class Returner extends HeroReturner{
             @Override
             public Void call() throws Exception {
-                player.AddHero(this.hero);
+                player.addHero(this.hero);
                 JLabel heroLabel = new JLabel(this.hero.portraitSmall);
                 heroLabel.addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(java.awt.event.MouseEvent e) {
-                            player.RemoveHero(hero);
-                            Refresh();
+                            player.removeHero(hero);
+                            refresh();
                         }
                     });
                 
@@ -692,15 +692,15 @@ public class WindowManager {
             }
         }
         
-        void Refresh(){
+        void refresh(){
             heroes.removeAll();
-            for(Hero hero: player.GetPlayList()) {
+            for(Hero hero: player.getPlayList()) {
                 JLabel heroLabel = new JLabel(hero.portraitSmall);
                 heroLabel.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(java.awt.event.MouseEvent evt) {
-                        player.RemoveHero(hero);
-                        Refresh();
+                        player.removeHero(hero);
+                        refresh();
                     }
                 });
                 heroes.add(heroLabel);
@@ -714,7 +714,7 @@ public class WindowManager {
         JPanel south = new JPanel(new MigLayout("wrap 2", "[][grow]", "[][grow][]"));
         JPanel players = new JPanel(new MigLayout("flowy", "grow, fill"));
         JTextField name = new JTextField("Team Name");
-        JButton addPlayers = new JButton(ResourceRetriever.GetImage("plus.png", 16, 16));
+        JButton addPlayers = new JButton(ResourceRetriever.getImage("plus.png", 16, 16));
         JButton cancel = new JButton("Cancel");
         JButton save = new JButton("Save");       
         Team team;
@@ -739,12 +739,12 @@ public class WindowManager {
                 } else {
                     team.saveTeam(false);
                 }
-                callerScreen.Refresh();
+                callerScreen.refresh();
                 caller.Return();
             });
             addPlayers.setMargin(new Insets(0,0,0,0));
             addPlayers.addActionListener((ActionEvent e) -> {                
-                if (team.GetPlayers().length < 5) {
+                if (team.getPlayers().length < 5) {
                     JButton cancelB = new JButton("Cancel");
                     cancelB.addActionListener((ActionEvent f) -> {
                         inner.removeAll();
@@ -761,20 +761,20 @@ public class WindowManager {
                     inner.add(new JSeparator(), "growx");
                     for (Player player: Global.Players) {
                         boolean playerInCurrentTeam = false;
-                        for (Player teamPlayer: team.GetPlayers()) {
+                        for (Player teamPlayer: team.getPlayers()) {
                             if (teamPlayer.globalIndex == player.globalIndex) {
                                 playerInCurrentTeam = true;
                                 break;
                             }
                         }
                         if (!playerInCurrentTeam) {                        
-                            JPanel oldPlayer = player.PlayerPreview();
+                            JPanel oldPlayer = player.playerPreview();
                             JButton choose = new JButton("Add!");
                             choose.addActionListener((ActionEvent f) -> {
-                                team.AddPlayer(player);
+                                team.addPlayer(player);
                                 inner.removeAll();
                                 popup.dispose();
-                                Refresh();
+                                refresh();
                             });
                             oldPlayer.add(choose, "east");
                             oldPlayer.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -794,22 +794,22 @@ public class WindowManager {
             
             caller = callerScreen;
             
-            DrawScreen(teamPassed);
+            drawScreen(teamPassed);
         }
         
-        void DrawScreen(Team teamPassed) {
+        void drawScreen(Team teamPassed) {
             
             if (teamPassed != null) {
                 // We're editing a current team
                 team = teamPassed;
-                for (Player player: team.GetPlayers()) {                          
-                            JPanel thisPlayer = player.PlayerPreview();
-                            JButton modify = new JButton(ResourceRetriever.GetImage("edit.png", 16, 16));
+                for (Player player: team.getPlayers()) {
+                            JPanel thisPlayer = player.playerPreview();
+                            JButton modify = new JButton(ResourceRetriever.getImage("edit.png", 16, 16));
                             modify.setMargin(new Insets(0,0,0,0));
                             modify.addActionListener((ActionEvent e) -> {
                                 new ModifyPlayerPopup(player, this, null);
                             });
-                            JButton delete = new JButton(ResourceRetriever.GetImage("X.png", 16, 16));
+                            JButton delete = new JButton(ResourceRetriever.getImage("X.png", 16, 16));
                             delete.setMargin(new Insets(0,0,0,0));
                             delete.addActionListener((ActionEvent e) -> {
                                 Object[] options = {"Remove Payer from team", "Delete Player", "Cancel"};
@@ -823,16 +823,16 @@ public class WindowManager {
                                         options,
                                         options[2]);
                                 if (answer == 0) {
-                                    team.RemovePlayer(player);
-                                    Refresh();
+                                    team.removePlayer(player);
+                                    refresh();
                                 } else if (answer == 1) {
                                     // Teams without uniqueID's don't get added to players yet,
                                     //   so the player needs to be manually removed.
                                     if (team.globalIndex == -1) {
-                                        team.RemovePlayer(player);
+                                        team.removePlayer(player);
                                     }
-                                    player.Delete();
-                                    Refresh();
+                                    player.delete();
+                                    refresh();
                                 }
                             });
                             thisPlayer.add(delete, "east");
@@ -862,12 +862,12 @@ public class WindowManager {
         }
 
         @Override
-        void Refresh() {
+        void refresh() {
             team.name = name.getText();
             south.removeAll();
             players.removeAll();
             Eve.removeAll();
-            DrawScreen(team);
+            drawScreen(team);
             Eve.revalidate();
             Eve.repaint();
         }
@@ -895,7 +895,7 @@ public class WindowManager {
         JPanel Str = new JPanel(new MigLayout("", "[grow 50][grow 50]", ""));
         JPanel Agi = new JPanel(new MigLayout("", "[grow 50][grow 50]", ""));
         JPanel Int = new JPanel(new MigLayout("", "[grow 50][grow 50]", ""));
-        JLabel portrait = new JLabel(ResourceRetriever.GetImage("Transparent.png", 256, 144));
+        JLabel portrait = new JLabel(ResourceRetriever.getImage("Transparent.png", 256, 144));
         JScrollPane scrollPane = new JScrollPane(heroes);
         JTextArea info = new JTextArea();
         
@@ -939,8 +939,8 @@ public class WindowManager {
                                 if (label.isEnabled()) {
                                     try {
                                         scrollPane.getVerticalScrollBar().setValue(0);
-                                        function.HeroEquals(hero);
-                                        function.MouseEventEquals(evt);
+                                        function.heroEquals(hero);
+                                        function.mouseEventEquals(evt);
                                         function.call();
                                     } catch (Exception ex) {
                                         Logger.getLogger(WindowManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -953,23 +953,23 @@ public class WindowManager {
                 heroPanels.put(hero.abbrv, label);
             }
             
-            heroes.add(new JLabel(ResourceRetriever.GetImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
-            heroes.add(new JLabel(ResourceRetriever.GetImage("STR.png", 24, 24)), "shrink, center");
-            heroes.add(new JLabel(ResourceRetriever.GetImage("Dire.png", 24, 24)), "span, center, grow");
+            heroes.add(new JLabel(ResourceRetriever.getImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
+            heroes.add(new JLabel(ResourceRetriever.getImage("STR.png", 24, 24)), "shrink, center");
+            heroes.add(new JLabel(ResourceRetriever.getImage("Dire.png", 24, 24)), "span, center, grow");
             Str.add(heroFactions.get("RadiantStrength"), "grow, width 100:pref:260, center");
             Str.add(heroFactions.get("DireStrength"), "grow, width 100:pref:260, center");
             heroes.add(Str, "span, height min:0:pref");
             
-            heroes.add(new JLabel(ResourceRetriever.GetImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
-            heroes.add(new JLabel(ResourceRetriever.GetImage("AGI.png", 24, 24)), "shrink, center");
-            heroes.add(new JLabel(ResourceRetriever.GetImage("Dire.png", 24, 24)), "span, center, grow");
+            heroes.add(new JLabel(ResourceRetriever.getImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
+            heroes.add(new JLabel(ResourceRetriever.getImage("AGI.png", 24, 24)), "shrink, center");
+            heroes.add(new JLabel(ResourceRetriever.getImage("Dire.png", 24, 24)), "span, center, grow");
             Agi.add(heroFactions.get("RadiantAgility"), "grow, width 100:pref:260, center");
             Agi.add(heroFactions.get("DireAgility"), "grow, width 100:pref:260, center");
             heroes.add(Agi, "span, height pref!");
             
-            heroes.add(new JLabel(ResourceRetriever.GetImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
-            heroes.add(new JLabel(ResourceRetriever.GetImage("INT.png", 24, 24)), "shrink, center");
-            heroes.add(new JLabel(ResourceRetriever.GetImage("Dire.png", 24, 24)), "span, center, grow");
+            heroes.add(new JLabel(ResourceRetriever.getImage("Radiant.png", 24, 24)), "span, split 3, center, grow");
+            heroes.add(new JLabel(ResourceRetriever.getImage("INT.png", 24, 24)), "shrink, center");
+            heroes.add(new JLabel(ResourceRetriever.getImage("Dire.png", 24, 24)), "span, center, grow");
             Int.add(heroFactions.get("RadiantIntelligence"), "grow, width 100:pref:260, center");
             Int.add(heroFactions.get("DireIntelligence"), "grow, width 100:pref:260, center");
             heroes.add(Int, "span, height pref!");
