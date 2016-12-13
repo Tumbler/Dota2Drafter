@@ -812,7 +812,7 @@ public class WindowManager {
                             JButton delete = new JButton(ResourceRetriever.getImage("X.png", 16, 16));
                             delete.setMargin(new Insets(0,0,0,0));
                             delete.addActionListener((ActionEvent e) -> {
-                                Object[] options = {"Remove Payer from team", "Delete Player", "Cancel"};
+                                Object[] options = {"Remove Player from team", "Delete Player", "Cancel"};
                                 JFrame frame = new JFrame();
                                 int answer = JOptionPane.showOptionDialog(frame,
                                         "Are you sure you would like to delete \"" + player.name + "?\"",
