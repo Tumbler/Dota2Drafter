@@ -68,8 +68,6 @@ public class Team {
                 if (globalIndex != -1) {
                     player.teams.remove(globalIndex);
                 }
-            }
-            if (returnVal == 1) {
                 players[i] = players[i+1];
             }
         }
